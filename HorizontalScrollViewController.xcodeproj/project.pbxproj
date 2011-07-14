@@ -22,6 +22,15 @@
 		E62059A013CF690D00656735 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E620599E13CF690D00656735 /* InfoPlist.strings */; };
 		E62059A313CF690D00656735 /* HorizontalScrollViewControllerTests.h in Resources */ = {isa = PBXBuildFile; fileRef = E62059A213CF690D00656735 /* HorizontalScrollViewControllerTests.h */; };
 		E62059A513CF690D00656735 /* HorizontalScrollViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E62059A413CF690D00656735 /* HorizontalScrollViewControllerTests.m */; };
+		E62059B213CF695700656735 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62059AF13CF695700656735 /* PhotoViewController.m */; };
+		E62059B313CF695700656735 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62059AF13CF695700656735 /* PhotoViewController.m */; };
+		E62059B413CF695700656735 /* ScrollPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62059B113CF695700656735 /* ScrollPageViewController.m */; };
+		E62059B513CF695700656735 /* ScrollPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E62059B113CF695700656735 /* ScrollPageViewController.m */; };
+		E62059C613CF699400656735 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E62059BF13CF699400656735 /* libOCMock.a */; };
+		E62059EF13CF6B3300656735 /* OrderedListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E62059EE13CF6B3300656735 /* OrderedListDataSource.m */; };
+		E62059F013CF6B3300656735 /* OrderedListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E62059EE13CF6B3300656735 /* OrderedListDataSource.m */; };
+		E62059F413CF702400656735 /* OrderedListDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E62059F313CF702400656735 /* OrderedListDataSourceTests.m */; };
+		E6EC5A5813CF753300F85BA8 /* DataSourceDelegateMock.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EC5A5713CF753200F85BA8 /* DataSourceDelegateMock.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,22 +48,41 @@
 		E620597513CF690C00656735 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E620597713CF690C00656735 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E620597913CF690C00656735 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		E620597D13CF690C00656735 /* HorizontalScrollViewController-Info.plist */ = {isa = PBXFileReference; path = "HorizontalScrollViewController-Info.plist"; sourceTree = "<group>"; };
+		E620597D13CF690C00656735 /* HorizontalScrollViewController-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HorizontalScrollViewController-Info.plist"; sourceTree = "<group>"; };
 		E620597F13CF690C00656735 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E620598113CF690C00656735 /* HorizontalScrollViewController-Prefix.pch */ = {isa = PBXFileReference; path = "HorizontalScrollViewController-Prefix.pch"; sourceTree = "<group>"; };
+		E620598113CF690C00656735 /* HorizontalScrollViewController-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HorizontalScrollViewController-Prefix.pch"; sourceTree = "<group>"; };
 		E620598213CF690C00656735 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E620598413CF690C00656735 /* HorizontalScrollViewControllerAppDelegate.h */ = {isa = PBXFileReference; path = HorizontalScrollViewControllerAppDelegate.h; sourceTree = "<group>"; };
+		E620598413CF690C00656735 /* HorizontalScrollViewControllerAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HorizontalScrollViewControllerAppDelegate.h; sourceTree = "<group>"; };
 		E620598513CF690D00656735 /* HorizontalScrollViewControllerAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HorizontalScrollViewControllerAppDelegate.m; sourceTree = "<group>"; };
 		E620598813CF690D00656735 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		E620598A13CF690D00656735 /* HorizontalScrollViewControllerViewController.h */ = {isa = PBXFileReference; path = HorizontalScrollViewControllerViewController.h; sourceTree = "<group>"; };
+		E620598A13CF690D00656735 /* HorizontalScrollViewControllerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HorizontalScrollViewControllerViewController.h; sourceTree = "<group>"; };
 		E620598B13CF690D00656735 /* HorizontalScrollViewControllerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HorizontalScrollViewControllerViewController.m; sourceTree = "<group>"; };
 		E620598E13CF690D00656735 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HorizontalScrollViewControllerViewController.xib; sourceTree = "<group>"; };
 		E620599513CF690D00656735 /* HorizontalScrollViewControllerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HorizontalScrollViewControllerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E620599D13CF690D00656735 /* HorizontalScrollViewControllerTests-Info.plist */ = {isa = PBXFileReference; path = "HorizontalScrollViewControllerTests-Info.plist"; sourceTree = "<group>"; };
+		E620599D13CF690D00656735 /* HorizontalScrollViewControllerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HorizontalScrollViewControllerTests-Info.plist"; sourceTree = "<group>"; };
 		E620599F13CF690D00656735 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E62059A113CF690D00656735 /* HorizontalScrollViewControllerTests-Prefix.pch */ = {isa = PBXFileReference; path = "HorizontalScrollViewControllerTests-Prefix.pch"; sourceTree = "<group>"; };
+		E62059A113CF690D00656735 /* HorizontalScrollViewControllerTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HorizontalScrollViewControllerTests-Prefix.pch"; sourceTree = "<group>"; };
 		E62059A213CF690D00656735 /* HorizontalScrollViewControllerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HorizontalScrollViewControllerTests.h; sourceTree = "<group>"; };
 		E62059A413CF690D00656735 /* HorizontalScrollViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HorizontalScrollViewControllerTests.m; sourceTree = "<group>"; };
+		E62059AE13CF695700656735 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		E62059AF13CF695700656735 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		E62059B013CF695700656735 /* ScrollPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollPageViewController.h; sourceTree = "<group>"; };
+		E62059B113CF695700656735 /* ScrollPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPageViewController.m; sourceTree = "<group>"; };
+		E62059BF13CF699400656735 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
+		E62059C013CF699400656735 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
+		E62059C113CF699400656735 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
+		E62059C213CF699400656735 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
+		E62059C313CF699400656735 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
+		E62059C413CF699400656735 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
+		E62059C513CF699400656735 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
+		E62059ED13CF6B3300656735 /* OrderedListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedListDataSource.h; sourceTree = "<group>"; };
+		E62059EE13CF6B3300656735 /* OrderedListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedListDataSource.m; sourceTree = "<group>"; };
+		E62059F113CF6B9C00656735 /* OrderedListDataSourceDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedListDataSourceDelegateProtocol.h; sourceTree = "<group>"; };
+		E62059F213CF702400656735 /* OrderedListDataSourceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedListDataSourceTests.h; sourceTree = "<group>"; };
+		E62059F313CF702400656735 /* OrderedListDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedListDataSourceTests.m; sourceTree = "<group>"; };
+		E6EC5A5413CF740E00F85BA8 /* OrderedListDataSourceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedListDataSourceProtocol.h; sourceTree = "<group>"; };
+		E6EC5A5613CF753200F85BA8 /* DataSourceDelegateMock.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DataSourceDelegateMock.h; sourceTree = "<group>"; };
+		E6EC5A5713CF753200F85BA8 /* DataSourceDelegateMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceDelegateMock.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +103,7 @@
 				E620599613CF690D00656735 /* UIKit.framework in Frameworks */,
 				E620599713CF690D00656735 /* Foundation.framework in Frameworks */,
 				E620599813CF690D00656735 /* CoreGraphics.framework in Frameworks */,
+				E62059C613CF699400656735 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +142,13 @@
 		E620597B13CF690C00656735 /* HorizontalScrollViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E62059F113CF6B9C00656735 /* OrderedListDataSourceDelegateProtocol.h */,
+				E62059ED13CF6B3300656735 /* OrderedListDataSource.h */,
+				E62059EE13CF6B3300656735 /* OrderedListDataSource.m */,
+				E62059AE13CF695700656735 /* PhotoViewController.h */,
+				E62059AF13CF695700656735 /* PhotoViewController.m */,
+				E62059B013CF695700656735 /* ScrollPageViewController.h */,
+				E62059B113CF695700656735 /* ScrollPageViewController.m */,
 				E620598413CF690C00656735 /* HorizontalScrollViewControllerAppDelegate.h */,
 				E620598513CF690D00656735 /* HorizontalScrollViewControllerAppDelegate.m */,
 				E620598713CF690D00656735 /* MainWindow.xib */,
@@ -120,6 +156,7 @@
 				E620598B13CF690D00656735 /* HorizontalScrollViewControllerViewController.m */,
 				E620598D13CF690D00656735 /* HorizontalScrollViewControllerViewController.xib */,
 				E620597C13CF690C00656735 /* Supporting Files */,
+				E6EC5A5413CF740E00F85BA8 /* OrderedListDataSourceProtocol.h */,
 			);
 			path = HorizontalScrollViewController;
 			sourceTree = "<group>";
@@ -138,9 +175,14 @@
 		E620599B13CF690D00656735 /* HorizontalScrollViewControllerTests */ = {
 			isa = PBXGroup;
 			children = (
+				E62059BE13CF699400656735 /* OCMock */,
 				E62059A213CF690D00656735 /* HorizontalScrollViewControllerTests.h */,
 				E62059A413CF690D00656735 /* HorizontalScrollViewControllerTests.m */,
 				E620599C13CF690D00656735 /* Supporting Files */,
+				E62059F213CF702400656735 /* OrderedListDataSourceTests.h */,
+				E62059F313CF702400656735 /* OrderedListDataSourceTests.m */,
+				E6EC5A5613CF753200F85BA8 /* DataSourceDelegateMock.h */,
+				E6EC5A5713CF753200F85BA8 /* DataSourceDelegateMock.m */,
 			);
 			path = HorizontalScrollViewControllerTests;
 			sourceTree = "<group>";
@@ -153,6 +195,20 @@
 				E62059A113CF690D00656735 /* HorizontalScrollViewControllerTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E62059BE13CF699400656735 /* OCMock */ = {
+			isa = PBXGroup;
+			children = (
+				E62059BF13CF699400656735 /* libOCMock.a */,
+				E62059C013CF699400656735 /* NSNotificationCenter+OCMAdditions.h */,
+				E62059C113CF699400656735 /* OCMArg.h */,
+				E62059C213CF699400656735 /* OCMConstraint.h */,
+				E62059C313CF699400656735 /* OCMock.h */,
+				E62059C413CF699400656735 /* OCMockObject.h */,
+				E62059C513CF699400656735 /* OCMockRecorder.h */,
+			);
+			path = OCMock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +322,9 @@
 				E620598313CF690C00656735 /* main.m in Sources */,
 				E620598613CF690D00656735 /* HorizontalScrollViewControllerAppDelegate.m in Sources */,
 				E620598C13CF690D00656735 /* HorizontalScrollViewControllerViewController.m in Sources */,
+				E62059B213CF695700656735 /* PhotoViewController.m in Sources */,
+				E62059B413CF695700656735 /* ScrollPageViewController.m in Sources */,
+				E62059EF13CF6B3300656735 /* OrderedListDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +333,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E62059A513CF690D00656735 /* HorizontalScrollViewControllerTests.m in Sources */,
+				E62059B313CF695700656735 /* PhotoViewController.m in Sources */,
+				E62059B513CF695700656735 /* ScrollPageViewController.m in Sources */,
+				E62059F013CF6B3300656735 /* OrderedListDataSource.m in Sources */,
+				E62059F413CF702400656735 /* OrderedListDataSourceTests.m in Sources */,
+				E6EC5A5813CF753300F85BA8 /* DataSourceDelegateMock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,10 +458,18 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HorizontalScrollViewControllerTests/HorizontalScrollViewControllerTests-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/HorizontalScrollViewControllerTests/OCMock\"";
 				INFOPLIST_FILE = "HorizontalScrollViewControllerTests/HorizontalScrollViewControllerTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/HorizontalScrollViewControllerTests/OCMock\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
+					"-ObjC",
+					"-force_load",
+					"$(PROJECT_DIR)/HorizontalScrollViewControllerTests/OCMock/libOCMock.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -416,10 +488,18 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HorizontalScrollViewControllerTests/HorizontalScrollViewControllerTests-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/HorizontalScrollViewControllerTests/OCMock\"";
 				INFOPLIST_FILE = "HorizontalScrollViewControllerTests/HorizontalScrollViewControllerTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/HorizontalScrollViewControllerTests/OCMock\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
+					"-ObjC",
+					"-force_load",
+					"$(PROJECT_DIR)/HorizontalScrollViewControllerTests/OCMock/libOCMock.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -446,6 +526,7 @@
 				E62059AA13CF690D00656735 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E62059AB13CF690D00656735 /* Build configuration list for PBXNativeTarget "HorizontalScrollViewControllerTests" */ = {
 			isa = XCConfigurationList;
@@ -454,6 +535,7 @@
 				E62059AD13CF690D00656735 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
