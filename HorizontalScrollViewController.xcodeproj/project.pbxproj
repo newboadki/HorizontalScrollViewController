@@ -1,0 +1,461 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E620597613CF690C00656735 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E620597513CF690C00656735 /* UIKit.framework */; };
+		E620597813CF690C00656735 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E620597713CF690C00656735 /* Foundation.framework */; };
+		E620597A13CF690C00656735 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E620597913CF690C00656735 /* CoreGraphics.framework */; };
+		E620598013CF690C00656735 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E620597E13CF690C00656735 /* InfoPlist.strings */; };
+		E620598313CF690C00656735 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E620598213CF690C00656735 /* main.m */; };
+		E620598613CF690D00656735 /* HorizontalScrollViewControllerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E620598513CF690D00656735 /* HorizontalScrollViewControllerAppDelegate.m */; };
+		E620598913CF690D00656735 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E620598713CF690D00656735 /* MainWindow.xib */; };
+		E620598C13CF690D00656735 /* HorizontalScrollViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E620598B13CF690D00656735 /* HorizontalScrollViewControllerViewController.m */; };
+		E620598F13CF690D00656735 /* HorizontalScrollViewControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E620598D13CF690D00656735 /* HorizontalScrollViewControllerViewController.xib */; };
+		E620599613CF690D00656735 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E620597513CF690C00656735 /* UIKit.framework */; };
+		E620599713CF690D00656735 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E620597713CF690C00656735 /* Foundation.framework */; };
+		E620599813CF690D00656735 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E620597913CF690C00656735 /* CoreGraphics.framework */; };
+		E62059A013CF690D00656735 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E620599E13CF690D00656735 /* InfoPlist.strings */; };
+		E62059A313CF690D00656735 /* HorizontalScrollViewControllerTests.h in Resources */ = {isa = PBXBuildFile; fileRef = E62059A213CF690D00656735 /* HorizontalScrollViewControllerTests.h */; };
+		E62059A513CF690D00656735 /* HorizontalScrollViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E62059A413CF690D00656735 /* HorizontalScrollViewControllerTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E620599913CF690D00656735 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E620596813CF690C00656735 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E620597013CF690C00656735;
+			remoteInfo = HorizontalScrollViewController;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E620597113CF690C00656735 /* HorizontalScrollViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HorizontalScrollViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E620597513CF690C00656735 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E620597713CF690C00656735 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E620597913CF690C00656735 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E620597D13CF690C00656735 /* HorizontalScrollViewController-Info.plist */ = {isa = PBXFileReference; path = "HorizontalScrollViewController-Info.plist"; sourceTree = "<group>"; };
+		E620597F13CF690C00656735 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E620598113CF690C00656735 /* HorizontalScrollViewController-Prefix.pch */ = {isa = PBXFileReference; path = "HorizontalScrollViewController-Prefix.pch"; sourceTree = "<group>"; };
+		E620598213CF690C00656735 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E620598413CF690C00656735 /* HorizontalScrollViewControllerAppDelegate.h */ = {isa = PBXFileReference; path = HorizontalScrollViewControllerAppDelegate.h; sourceTree = "<group>"; };
+		E620598513CF690D00656735 /* HorizontalScrollViewControllerAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HorizontalScrollViewControllerAppDelegate.m; sourceTree = "<group>"; };
+		E620598813CF690D00656735 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		E620598A13CF690D00656735 /* HorizontalScrollViewControllerViewController.h */ = {isa = PBXFileReference; path = HorizontalScrollViewControllerViewController.h; sourceTree = "<group>"; };
+		E620598B13CF690D00656735 /* HorizontalScrollViewControllerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HorizontalScrollViewControllerViewController.m; sourceTree = "<group>"; };
+		E620598E13CF690D00656735 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HorizontalScrollViewControllerViewController.xib; sourceTree = "<group>"; };
+		E620599513CF690D00656735 /* HorizontalScrollViewControllerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HorizontalScrollViewControllerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E620599D13CF690D00656735 /* HorizontalScrollViewControllerTests-Info.plist */ = {isa = PBXFileReference; path = "HorizontalScrollViewControllerTests-Info.plist"; sourceTree = "<group>"; };
+		E620599F13CF690D00656735 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E62059A113CF690D00656735 /* HorizontalScrollViewControllerTests-Prefix.pch */ = {isa = PBXFileReference; path = "HorizontalScrollViewControllerTests-Prefix.pch"; sourceTree = "<group>"; };
+		E62059A213CF690D00656735 /* HorizontalScrollViewControllerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HorizontalScrollViewControllerTests.h; sourceTree = "<group>"; };
+		E62059A413CF690D00656735 /* HorizontalScrollViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HorizontalScrollViewControllerTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E620596E13CF690C00656735 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E620597613CF690C00656735 /* UIKit.framework in Frameworks */,
+				E620597813CF690C00656735 /* Foundation.framework in Frameworks */,
+				E620597A13CF690C00656735 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E620599113CF690D00656735 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E620599613CF690D00656735 /* UIKit.framework in Frameworks */,
+				E620599713CF690D00656735 /* Foundation.framework in Frameworks */,
+				E620599813CF690D00656735 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E620596613CF690C00656735 = {
+			isa = PBXGroup;
+			children = (
+				E620597B13CF690C00656735 /* HorizontalScrollViewController */,
+				E620599B13CF690D00656735 /* HorizontalScrollViewControllerTests */,
+				E620597413CF690C00656735 /* Frameworks */,
+				E620597213CF690C00656735 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E620597213CF690C00656735 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E620597113CF690C00656735 /* HorizontalScrollViewController.app */,
+				E620599513CF690D00656735 /* HorizontalScrollViewControllerTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E620597413CF690C00656735 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E620597513CF690C00656735 /* UIKit.framework */,
+				E620597713CF690C00656735 /* Foundation.framework */,
+				E620597913CF690C00656735 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E620597B13CF690C00656735 /* HorizontalScrollViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E620598413CF690C00656735 /* HorizontalScrollViewControllerAppDelegate.h */,
+				E620598513CF690D00656735 /* HorizontalScrollViewControllerAppDelegate.m */,
+				E620598713CF690D00656735 /* MainWindow.xib */,
+				E620598A13CF690D00656735 /* HorizontalScrollViewControllerViewController.h */,
+				E620598B13CF690D00656735 /* HorizontalScrollViewControllerViewController.m */,
+				E620598D13CF690D00656735 /* HorizontalScrollViewControllerViewController.xib */,
+				E620597C13CF690C00656735 /* Supporting Files */,
+			);
+			path = HorizontalScrollViewController;
+			sourceTree = "<group>";
+		};
+		E620597C13CF690C00656735 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E620597D13CF690C00656735 /* HorizontalScrollViewController-Info.plist */,
+				E620597E13CF690C00656735 /* InfoPlist.strings */,
+				E620598113CF690C00656735 /* HorizontalScrollViewController-Prefix.pch */,
+				E620598213CF690C00656735 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E620599B13CF690D00656735 /* HorizontalScrollViewControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				E62059A213CF690D00656735 /* HorizontalScrollViewControllerTests.h */,
+				E62059A413CF690D00656735 /* HorizontalScrollViewControllerTests.m */,
+				E620599C13CF690D00656735 /* Supporting Files */,
+			);
+			path = HorizontalScrollViewControllerTests;
+			sourceTree = "<group>";
+		};
+		E620599C13CF690D00656735 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E620599D13CF690D00656735 /* HorizontalScrollViewControllerTests-Info.plist */,
+				E620599E13CF690D00656735 /* InfoPlist.strings */,
+				E62059A113CF690D00656735 /* HorizontalScrollViewControllerTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E620597013CF690C00656735 /* HorizontalScrollViewController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E62059A813CF690D00656735 /* Build configuration list for PBXNativeTarget "HorizontalScrollViewController" */;
+			buildPhases = (
+				E620596D13CF690C00656735 /* Sources */,
+				E620596E13CF690C00656735 /* Frameworks */,
+				E620596F13CF690C00656735 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HorizontalScrollViewController;
+			productName = HorizontalScrollViewController;
+			productReference = E620597113CF690C00656735 /* HorizontalScrollViewController.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E620599413CF690D00656735 /* HorizontalScrollViewControllerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E62059AB13CF690D00656735 /* Build configuration list for PBXNativeTarget "HorizontalScrollViewControllerTests" */;
+			buildPhases = (
+				E620599013CF690D00656735 /* Sources */,
+				E620599113CF690D00656735 /* Frameworks */,
+				E620599213CF690D00656735 /* Resources */,
+				E620599313CF690D00656735 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E620599A13CF690D00656735 /* PBXTargetDependency */,
+			);
+			name = HorizontalScrollViewControllerTests;
+			productName = HorizontalScrollViewControllerTests;
+			productReference = E620599513CF690D00656735 /* HorizontalScrollViewControllerTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E620596813CF690C00656735 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Unboxed Consulting";
+			};
+			buildConfigurationList = E620596B13CF690C00656735 /* Build configuration list for PBXProject "HorizontalScrollViewController" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E620596613CF690C00656735;
+			productRefGroup = E620597213CF690C00656735 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E620597013CF690C00656735 /* HorizontalScrollViewController */,
+				E620599413CF690D00656735 /* HorizontalScrollViewControllerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E620596F13CF690C00656735 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E620598013CF690C00656735 /* InfoPlist.strings in Resources */,
+				E620598913CF690D00656735 /* MainWindow.xib in Resources */,
+				E620598F13CF690D00656735 /* HorizontalScrollViewControllerViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E620599213CF690D00656735 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E62059A013CF690D00656735 /* InfoPlist.strings in Resources */,
+				E62059A313CF690D00656735 /* HorizontalScrollViewControllerTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E620599313CF690D00656735 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E620596D13CF690C00656735 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E620598313CF690C00656735 /* main.m in Sources */,
+				E620598613CF690D00656735 /* HorizontalScrollViewControllerAppDelegate.m in Sources */,
+				E620598C13CF690D00656735 /* HorizontalScrollViewControllerViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E620599013CF690D00656735 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E62059A513CF690D00656735 /* HorizontalScrollViewControllerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E620599A13CF690D00656735 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E620597013CF690C00656735 /* HorizontalScrollViewController */;
+			targetProxy = E620599913CF690D00656735 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E620597E13CF690C00656735 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E620597F13CF690C00656735 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E620598713CF690D00656735 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E620598813CF690D00656735 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		E620598D13CF690D00656735 /* HorizontalScrollViewControllerViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E620598E13CF690D00656735 /* en */,
+			);
+			name = HorizontalScrollViewControllerViewController.xib;
+			sourceTree = "<group>";
+		};
+		E620599E13CF690D00656735 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E620599F13CF690D00656735 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E62059A613CF690D00656735 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E62059A713CF690D00656735 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		E62059A913CF690D00656735 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HorizontalScrollViewController/HorizontalScrollViewController-Prefix.pch";
+				INFOPLIST_FILE = "HorizontalScrollViewController/HorizontalScrollViewController-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		E62059AA13CF690D00656735 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HorizontalScrollViewController/HorizontalScrollViewController-Prefix.pch";
+				INFOPLIST_FILE = "HorizontalScrollViewController/HorizontalScrollViewController-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		E62059AC13CF690D00656735 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HorizontalScrollViewController.app/HorizontalScrollViewController";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HorizontalScrollViewControllerTests/HorizontalScrollViewControllerTests-Prefix.pch";
+				INFOPLIST_FILE = "HorizontalScrollViewControllerTests/HorizontalScrollViewControllerTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		E62059AD13CF690D00656735 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HorizontalScrollViewController.app/HorizontalScrollViewController";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HorizontalScrollViewControllerTests/HorizontalScrollViewControllerTests-Prefix.pch";
+				INFOPLIST_FILE = "HorizontalScrollViewControllerTests/HorizontalScrollViewControllerTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E620596B13CF690C00656735 /* Build configuration list for PBXProject "HorizontalScrollViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E62059A613CF690D00656735 /* Debug */,
+				E62059A713CF690D00656735 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E62059A813CF690D00656735 /* Build configuration list for PBXNativeTarget "HorizontalScrollViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E62059A913CF690D00656735 /* Debug */,
+				E62059AA13CF690D00656735 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E62059AB13CF690D00656735 /* Build configuration list for PBXNativeTarget "HorizontalScrollViewControllerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E62059AC13CF690D00656735 /* Debug */,
+				E62059AD13CF690D00656735 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E620596813CF690C00656735 /* Project object */;
+}
