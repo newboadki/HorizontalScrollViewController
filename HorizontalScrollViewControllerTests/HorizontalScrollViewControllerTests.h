@@ -7,9 +7,12 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "HorizontalScrollViewController.h"
+#import "MethodSwizzleHelper.h"
 
 
-@interface HorizontalScrollViewControllerTests : SenTestCase {
+@interface HorizontalScrollViewControllerTests : SenTestCase
+{
 @private
     
 }

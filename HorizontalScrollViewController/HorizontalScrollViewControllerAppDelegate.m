@@ -8,7 +8,7 @@
 
 #import "HorizontalScrollViewControllerAppDelegate.h"
 
-#import "HorizontalScrollViewControllerViewController.h"
+#import "HorizontalScrollViewController.h"
 
 @implementation HorizontalScrollViewControllerAppDelegate
 
