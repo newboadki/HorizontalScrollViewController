@@ -8,10 +8,29 @@
 
 #import "ScrollPageViewController.h"
 
+@interface ScrollPageViewController()
+@property (retain, nonatomic) UILabel* textLabel;
+@end
 
 @implementation ScrollPageViewController
 
-@synthesize index;
+@synthesize textLabel;
+
+- (id) init
+{
+    self = [super init];
+
+    if(self)
+    {
+        UILabel* l = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 100, 50)];
+        [l setBackgroundColor:[UIColor clearColor]];
+        [self setTextLabel:l];
+        [l release];        
+        [self.view addSubview:self.textLabel];
+    }
+    
+    return self;
+}
 
 - (CGPoint)pointToCenterAfterRotation{}
 - (CGFloat)scaleToRestoreAfterRotation{}
@@ -20,9 +39,15 @@
 
 - (void) displayViewWithElement:(id)element
 {
-//    UILabel* label = (UILabel*)[self.view viewWithTag:1];
-//    label.text = element;
-//    [self.view setBackgroundColor:[UIColor purpleColor]];    
+    textLabel.text = element;
+    [self.view setBackgroundColor:[UIColor purpleColor]];        
 }
 
+
+- (void) dealloc
+{
+    [self setTextLabel:nil];
+    
+    [super dealloc];
+}
 @end

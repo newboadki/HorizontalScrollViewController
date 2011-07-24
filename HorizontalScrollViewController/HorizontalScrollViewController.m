@@ -65,6 +65,9 @@
     // Create an instance of the data Source
     [self createDataSource];
     
+    // Create the loading controller
+    self->loadingController = [[LoadingScreenViewController alloc] init];
+    
     // Step 1: make the outer paging scroll view
     CGRect pagingScrollViewFrame = [self frameForPagingScrollView];
     pagingScrollView = [[UIScrollView alloc] initWithFrame:pagingScrollViewFrame];
@@ -72,6 +75,7 @@
     pagingScrollView.backgroundColor = [UIColor blackColor];
     pagingScrollView.showsVerticalScrollIndicator = NO;
     pagingScrollView.showsHorizontalScrollIndicator = NO;
+    pagingScrollView.bounces = NO;
     pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
     pagingScrollView.delegate = self;
     self.view = pagingScrollView;
@@ -79,8 +83,8 @@
     // Step 2: prepare to tile content
     recycledPages = [[NSMutableSet alloc] init];
     visiblePages  = [[NSMutableSet alloc] init];
-    NSLog(@"%d", recycledPages==nil);
     [self tilePages];
+    
 }
 
 
@@ -99,6 +103,8 @@
     recycledPages = nil;
     [visiblePages release];
     visiblePages = nil;
+    [loadingController release];
+    loadingController = nil;    
 }
 
 
@@ -124,15 +130,19 @@
     int firstNeededPageIndex = floorf(CGRectGetMinX(visibleBounds) / CGRectGetWidth(visibleBounds));
     int lastNeededPageIndex  = floorf((CGRectGetMaxX(visibleBounds)-1) / CGRectGetWidth(visibleBounds));
     firstNeededPageIndex = MAX(firstNeededPageIndex, 0);
-    lastNeededPageIndex  = MIN(lastNeededPageIndex, [dataSource count] - 1);
+    lastNeededPageIndex  = MIN(lastNeededPageIndex, [dataSource count]+1); // This is MIN(lastNeededPageIndex, numberOfPages-1) because we have two loading pages => count+2-1 => count+1
         
     // Recycle no-longer-visible pages
     for (ScrollPageViewController* page in visiblePages)
     {        
         if (page.index < firstNeededPageIndex || page.index > lastNeededPageIndex)
         {
-            [recycledPages addObject:page];
-            [page.view removeFromSuperview];
+            if (page.index>0 && page.index<[dataSource count]+1)
+            {
+                // because we don't want to recycle the loading pages
+                [recycledPages addObject:page];
+                [page.view removeFromSuperview];
+            }
         }
     }
     [visiblePages minusSet:recycledPages];
@@ -142,15 +152,26 @@
     {
         if (![self isDisplayingPageForIndex:index])
         {
-            ScrollPageViewController* page = [self dequeueRecycledPage];
-            if (page == nil)
+            if(index==0 || index==[dataSource count]+1)
             {
-                page = [[[ScrollPageViewController alloc] init] autorelease];
+                // we need to use the loading screen
+                [self configurePage:loadingController forIndex:index];
+                [pagingScrollView addSubview:loadingController.view];
+                [visiblePages addObject:loadingController];
             }
-            
-            [self configurePage:page forIndex:index];
-            [pagingScrollView addSubview:page.view];
-            [visiblePages addObject:page];
+            else
+            {
+                // we need to deque one of the generic  controllers
+                ScrollPageViewController* page = [self dequeueRecycledPage];
+                if (page == nil)
+                {
+                    page = [[[ScrollPageViewController alloc] init] autorelease];
+                }
+                
+                [self configurePage:page forIndex:index];
+                [pagingScrollView addSubview:page.view];
+                [visiblePages addObject:page];
+            }            
         }
     }    
 }
@@ -170,7 +191,7 @@
         [[page retain] autorelease];
         [recycledPages removeObject:page];
     }
-    NSLog(@"is recycled and dequeued nil? %i", page==nil);
+    
     return page;
 }
 
@@ -195,7 +216,7 @@
 }
 
 
-- (void)configurePage:(ScrollPageViewController *)page forIndex:(NSUInteger)index
+- (void)configurePage:(PageViewController *)page forIndex:(NSUInteger)index
 {
     /***********************************************************************************************/
     /* - Sets the page's index.                                                                    */
@@ -204,9 +225,14 @@
 	/***********************************************************************************************/    
     page.index = index;
     page.view.frame = [self frameForPageAtIndex:index];
+    id element = nil;
     
-    // Use tiled images
-     [page displayViewWithElement:[dataSource objectAtIndex:page.index]];
+    if (index>0 && index<[dataSource count]+1)
+    {
+        element = [dataSource objectAtIndex:page.index-1];
+    }
+    
+    [page displayViewWithElement:element];
 }
 
 
@@ -307,7 +333,7 @@
     /* pagingScrollView is the root view controller's view, so its frame is in window coordinate   */
     /* space, which is never rotated. Its bounds, however, will be in landscape because it has a   */
     /* rotation transform applied.                                                                 */
-	/***********************************************************************************************/								
+	/***********************************************************************************************/							
     CGRect bounds = pagingScrollView.bounds;
     CGRect pageFrame = bounds;
     pageFrame.size.width -= (2 * PADDING); // The padding is added into the paginScrollViewBounds. So we substract it to calculate the width
@@ -322,9 +348,10 @@
     /***********************************************************************************************/
     /* We have to use the paging scroll view's bounds to calculate the contentSize, for the same   */
     /* reason outlined above.                                                                      */
-	/***********************************************************************************************/								
+	/***********************************************************************************************/							
     CGRect bounds = pagingScrollView.bounds;
-    CGSize contentSize = CGSizeMake(bounds.size.width * [dataSource count], bounds.size.height);
+    int numberOfPages = [dataSource count]+2; // The two blank pages at the beginning and end of the collection
+    CGSize contentSize = CGSizeMake(bounds.size.width * numberOfPages, bounds.size.height);
     
     return contentSize;
 }

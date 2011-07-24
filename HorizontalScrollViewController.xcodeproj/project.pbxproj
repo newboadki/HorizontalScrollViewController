@@ -28,6 +28,12 @@
 		E62059EF13CF6B3300656735 /* OrderedListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E62059EE13CF6B3300656735 /* OrderedListDataSource.m */; };
 		E62059F013CF6B3300656735 /* OrderedListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E62059EE13CF6B3300656735 /* OrderedListDataSource.m */; };
 		E62059F413CF702400656735 /* OrderedListDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E62059F313CF702400656735 /* OrderedListDataSourceTests.m */; };
+		E664C99413DB087000577557 /* LoadingScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E664C99213DB087000577557 /* LoadingScreenViewController.m */; };
+		E664C99513DB087000577557 /* LoadingScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E664C99213DB087000577557 /* LoadingScreenViewController.m */; };
+		E664C99613DB087000577557 /* LoadingScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E664C99313DB087000577557 /* LoadingScreenViewController.xib */; };
+		E664C99713DB087000577557 /* LoadingScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E664C99313DB087000577557 /* LoadingScreenViewController.xib */; };
+		E664C99B13DB0F2C00577557 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E664C99A13DB0F2C00577557 /* PageViewController.m */; };
+		E664C99C13DB0F2C00577557 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E664C99A13DB0F2C00577557 /* PageViewController.m */; };
 		E6A0612513D3727E006EE5D0 /* MethodSwizzleHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E6A0612413D3727E006EE5D0 /* MethodSwizzleHelper.m */; };
 		E6A0612913D373EA006EE5D0 /* MainScreenMock.m in Sources */ = {isa = PBXBuildFile; fileRef = E6A0612813D373EA006EE5D0 /* MainScreenMock.m */; };
 		E6EC5A5813CF753300F85BA8 /* DataSourceDelegateMock.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EC5A5713CF753200F85BA8 /* DataSourceDelegateMock.m */; };
@@ -77,6 +83,11 @@
 		E62059F113CF6B9C00656735 /* OrderedListDataSourceDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedListDataSourceDelegateProtocol.h; sourceTree = "<group>"; };
 		E62059F213CF702400656735 /* OrderedListDataSourceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedListDataSourceTests.h; sourceTree = "<group>"; };
 		E62059F313CF702400656735 /* OrderedListDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedListDataSourceTests.m; sourceTree = "<group>"; };
+		E664C99113DB087000577557 /* LoadingScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingScreenViewController.h; sourceTree = "<group>"; };
+		E664C99213DB087000577557 /* LoadingScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingScreenViewController.m; sourceTree = "<group>"; };
+		E664C99313DB087000577557 /* LoadingScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingScreenViewController.xib; sourceTree = "<group>"; };
+		E664C99913DB0F2C00577557 /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
+		E664C99A13DB0F2C00577557 /* PageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageViewController.m; sourceTree = "<group>"; };
 		E6A0612313D3727E006EE5D0 /* MethodSwizzleHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodSwizzleHelper.h; sourceTree = "<group>"; };
 		E6A0612413D3727E006EE5D0 /* MethodSwizzleHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodSwizzleHelper.m; sourceTree = "<group>"; };
 		E6A0612713D373EA006EE5D0 /* MainScreenMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenMock.h; sourceTree = "<group>"; };
@@ -155,6 +166,11 @@
 				E620598713CF690D00656735 /* MainWindow.xib */,
 				E620597C13CF690C00656735 /* Supporting Files */,
 				E6EC5A5413CF740E00F85BA8 /* OrderedListDataSourceProtocol.h */,
+				E664C99113DB087000577557 /* LoadingScreenViewController.h */,
+				E664C99213DB087000577557 /* LoadingScreenViewController.m */,
+				E664C99313DB087000577557 /* LoadingScreenViewController.xib */,
+				E664C99913DB0F2C00577557 /* PageViewController.h */,
+				E664C99A13DB0F2C00577557 /* PageViewController.m */,
 			);
 			path = HorizontalScrollViewController;
 			sourceTree = "<group>";
@@ -285,6 +301,7 @@
 			files = (
 				E620598013CF690C00656735 /* InfoPlist.strings in Resources */,
 				E620598913CF690D00656735 /* MainWindow.xib in Resources */,
+				E664C99613DB087000577557 /* LoadingScreenViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +311,7 @@
 			files = (
 				E62059A013CF690D00656735 /* InfoPlist.strings in Resources */,
 				E62059A313CF690D00656735 /* HorizontalScrollViewControllerTests.h in Resources */,
+				E664C99713DB087000577557 /* LoadingScreenViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +343,8 @@
 				E62059B213CF695700656735 /* HorizontalScrollViewController.m in Sources */,
 				E62059B413CF695700656735 /* ScrollPageViewController.m in Sources */,
 				E62059EF13CF6B3300656735 /* OrderedListDataSource.m in Sources */,
+				E664C99413DB087000577557 /* LoadingScreenViewController.m in Sources */,
+				E664C99B13DB0F2C00577557 /* PageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +360,8 @@
 				E6EC5A5813CF753300F85BA8 /* DataSourceDelegateMock.m in Sources */,
 				E6A0612513D3727E006EE5D0 /* MethodSwizzleHelper.m in Sources */,
 				E6A0612913D373EA006EE5D0 /* MainScreenMock.m in Sources */,
+				E664C99513DB087000577557 /* LoadingScreenViewController.m in Sources */,
+				E664C99C13DB0F2C00577557 /* PageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

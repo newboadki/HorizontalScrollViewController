@@ -46,6 +46,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "LoadingScreenViewController.h"
 
 @class ImageScrollView;
 @class ScrollPageViewController;
@@ -56,13 +57,14 @@
     NSMutableSet* recycledPages;
     NSMutableSet* visiblePages;
     NSArray*      dataSource;
+    LoadingScreenViewController* loadingController;
 
     // these values are stored off before we start rotation so we adjust our content offset appropriately during rotation
     int           firstVisiblePageIndexBeforeRotation;
     CGFloat       percentScrolledIntoFirstVisiblePage;
 }
 
-- (void)configurePage:(ScrollPageViewController*)page forIndex:(NSUInteger)index;
+- (void)configurePage:(PageViewController *)page forIndex:(NSUInteger)index;
 - (BOOL)isDisplayingPageForIndex:(NSUInteger)index;
 
 - (CGRect)frameForPagingScrollView;

@@ -41,9 +41,10 @@
     STAssertTrue(scrollingView.pagingEnabled == YES, @"the pagingScrollView should have paging enabled");
     STAssertTrue([[scrollingView.backgroundColor description] isEqualToString:@"UIDeviceWhiteColorSpace 0 1"]  , @"the pagingScrollView should have a black background color. %@", [scrollingView.backgroundColor description]);
     STAssertTrue(scrollingView.showsVerticalScrollIndicator == NO, @"the pagingScrollView should have showsVerticalScrollIndicator disabled");
+    STAssertTrue(scrollingView.bounces == NO, @"the pagingScrollView bounces property should be set to NO");
     STAssertTrue(scrollingView.showsHorizontalScrollIndicator == NO, @"the pagingScrollView should have showsHorizontalScrollIndicator disabled");
     STAssertTrue(scrollingView.delegate == controller, @"the pagingScrollView's delegate should be the contorller.");
-    STAssertTrue(scrollingView.contentSize.width == 1280, @"the pagingScrollView contentSize should adjust depending on the datasource count");
+    STAssertTrue(scrollingView.contentSize.width == 1920, @"the pagingScrollView contentSize should adjust depending on the datasource count + 2 pages for loading. Found %f",scrollingView.contentSize.width );
     STAssertTrue(scrollingView.contentSize.height == 480, @"the pagingScrollView contentSize should adjust depending on the datasource count");
     STAssertTrue(controller.view == scrollingView, @"The controllers view should be the pageScrollingView");
     NSMutableSet* recycled=nil;
@@ -57,7 +58,7 @@
 }
 
 
-- (void) testTildePages
+/*- (void) testTildePages
 {
     id pageScrollViewMock = [OCMockObject mockForClass:[UIScrollView class]];
     CGRect bounds = CGRectMake(0.0, 0.0, 320.0, 480.0);
@@ -69,7 +70,7 @@
     
     
     [controller release];
-}
+}*/
 
 - (void) testDequeueRecycledPages
 {
@@ -151,8 +152,11 @@ page.view.frame = [self frameForPageAtIndex:index];
 {
     // All we want to test in this testcase is that the method gets called with the right index
     // Unfortunatelly, the index seems to be 0 even if the mock expectations are set to a different value.
+    
+    // Because of this issue too, we can't really test this method, as we need to set the index to different values to test 
+    // which method gets called
     id page = [OCMockObject niceMockForClass:[ScrollPageViewController class]];
-    [[page expect] displayViewWithElement:@"A"];
+    [[page expect] displayViewWithElement:nil];// when the index is 0 or [dataSource count]+1 the method needs to be called with nil
     int index = 0;
     NSValue* indexValue = [NSValue valueWithBytes:&index objCType:@encode(int)];
     [[[page stub] index] andReturnsValue:indexValue];
@@ -247,7 +251,7 @@ page.view.frame = [self frameForPageAtIndex:index];
     
     CGSize contentSize = [controller contentSizeForPagingScrollView];
     
-    STAssertTrue(contentSize.width == 1280.0, @"contentSize width should be %f. Found %f", 1280.0,  contentSize.width);
+    STAssertTrue(contentSize.width == 1920.0, @"contentSize width should be %f. Found %f", 1920.0,  contentSize.width);
     STAssertTrue(contentSize.height == 480.0, @"contentSize height should be %f. Found %f", 480.0,  contentSize.height);
     
     [pagingScrollView release];

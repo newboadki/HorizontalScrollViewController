@@ -7,19 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PageViewController.h"
 
-
-@interface ScrollPageViewController : UIViewController
+@interface ScrollPageViewController : PageViewController
 {
 
 }
-
-@property   NSUInteger index;
-
-- (CGPoint)pointToCenterAfterRotation;
-- (CGFloat)scaleToRestoreAfterRotation;
-- (void)restoreCenterPoint:(CGPoint)oldCenter scale:(CGFloat)oldScale;
-
-- (void) displayViewWithElement:(id)element;
 
 @end
