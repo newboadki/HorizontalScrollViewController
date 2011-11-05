@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PageViewController.h"
+#import "PageController.h"
 
-@interface LoadingScreenViewController : PageViewController
+@interface LoadingScreenViewController : PageController
 {    
 }
 

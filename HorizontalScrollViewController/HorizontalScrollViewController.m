@@ -247,7 +247,7 @@
 }
 
 
-- (void)configurePage:(PageViewController *)page forIndex:(NSUInteger)index
+- (void)configurePage:(PageController *)page forIndex:(NSUInteger)index
 {
     /***********************************************************************************************/
     /* - Sets the page's index.                                                                    */

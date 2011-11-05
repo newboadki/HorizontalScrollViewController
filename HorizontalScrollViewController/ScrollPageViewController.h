@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PageViewController.h"
+#import "PageController.h"
 
-@interface ScrollPageViewController : PageViewController
+@interface ScrollPageViewController : PageController
 {
 
 }

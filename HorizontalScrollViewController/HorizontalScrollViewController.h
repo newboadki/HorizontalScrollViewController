@@ -64,7 +64,7 @@
     CGFloat       percentScrolledIntoFirstVisiblePage;
 }
 
-- (void)configurePage:(PageViewController *)page forIndex:(NSUInteger)index;
+- (void)configurePage:(PageController *)page forIndex:(NSUInteger)index;
 - (BOOL)isDisplayingPageForIndex:(NSUInteger)index;
 
 - (CGRect)frameForPagingScrollView;
