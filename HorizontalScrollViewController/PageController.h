@@ -7,19 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomViewControllerProtocol.h"
 
-
-@interface PageController : UIViewController
+@interface PageController : NSObject <CustomViewControllerProtocol>
 {    
 }
 
 @property   NSUInteger index;
+@property (retain, nonatomic) UIView* view;
 
 - (CGPoint)pointToCenterAfterRotation;
 - (CGFloat)scaleToRestoreAfterRotation;
 - (void)restoreCenterPoint:(CGPoint)oldCenter scale:(CGFloat)oldScale;
-
 - (void) displayViewWithElement:(id)element;
-
 
 @end

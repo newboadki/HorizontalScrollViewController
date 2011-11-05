@@ -150,14 +150,15 @@
 {
     for (ScrollPageViewController* page in visiblePages)
     {        
-        NSLog(@"---------%@", page);
         if (page.index < firstNeededPageIndex || page.index > lastNeededPageIndex)
         {
             if (page.index>0 && page.index<[dataSource count]+1)
             {
                 // because we don't want to recycle the loading pages
                 [recycledPages addObject:page];
+                [page viewWillDisappear:YES];
                 [page.view removeFromSuperview];
+                [page viewDidDisappear:YES];
             }
         }
     }
@@ -201,8 +202,11 @@
         page = [[[ScrollPageViewController alloc] init] autorelease];
     }
     
+    
     [self configurePage:page forIndex:index];
+    [page viewWillAppear:YES];
     [pagingScrollView addSubview:page.view];
+    [page viewDidAppear:YES];
     [visiblePages addObject:page];
 }
 

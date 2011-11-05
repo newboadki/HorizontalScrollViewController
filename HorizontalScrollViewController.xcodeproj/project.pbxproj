@@ -105,6 +105,7 @@
 		E6ECBF71146550A000B8B196 /* NSObject+KiwiVerifierAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECBF2D146550A000B8B196 /* NSObject+KiwiVerifierAdditions.m */; };
 		E6ECBF72146550A000B8B196 /* NSValue+KiwiAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECBF2F146550A000B8B196 /* NSValue+KiwiAdditions.m */; };
 		E6ECBF751465513C00B8B196 /* PageControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECBF741465513C00B8B196 /* PageControllerSpec.m */; };
+		E6ECBF7A1465620200B8B196 /* HorizontalScrollViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECBF791465620200B8B196 /* HorizontalScrollViewControllerSpec.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,7 +155,7 @@
 		E664C99113DB087000577557 /* LoadingScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingScreenViewController.h; sourceTree = "<group>"; };
 		E664C99213DB087000577557 /* LoadingScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingScreenViewController.m; sourceTree = "<group>"; };
 		E664C99313DB087000577557 /* LoadingScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingScreenViewController.xib; sourceTree = "<group>"; };
-		E664C99913DB0F2C00577557 /* PageController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PageController.h; sourceTree = "<group>"; };
+		E664C99913DB0F2C00577557 /* PageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageController.h; sourceTree = "<group>"; };
 		E664C99A13DB0F2C00577557 /* PageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageController.m; sourceTree = "<group>"; };
 		E6A0612313D3727E006EE5D0 /* MethodSwizzleHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodSwizzleHelper.h; sourceTree = "<group>"; };
 		E6A0612413D3727E006EE5D0 /* MethodSwizzleHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodSwizzleHelper.m; sourceTree = "<group>"; };
@@ -315,6 +316,7 @@
 		E6ECBF2F146550A000B8B196 /* NSValue+KiwiAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+KiwiAdditions.m"; sourceTree = "<group>"; };
 		E6ECBF741465513C00B8B196 /* PageControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageControllerSpec.m; sourceTree = "<group>"; };
 		E6ECBF771465523400B8B196 /* CustomViewControllerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewControllerProtocol.h; sourceTree = "<group>"; };
+		E6ECBF791465620200B8B196 /* HorizontalScrollViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalScrollViewControllerSpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,6 +411,7 @@
 		E620599B13CF690D00656735 /* HorizontalScrollViewControllerTests */ = {
 			isa = PBXGroup;
 			children = (
+				E6ECBF78146561E100B8B196 /* Specs */,
 				E6ECBE99146550A000B8B196 /* Kiwi */,
 				E6A0612313D3727E006EE5D0 /* MethodSwizzleHelper.h */,
 				E6A0612413D3727E006EE5D0 /* MethodSwizzleHelper.m */,
@@ -422,7 +425,6 @@
 				E6EC5A5713CF753200F85BA8 /* DataSourceDelegateMock.m */,
 				E6A0612713D373EA006EE5D0 /* MainScreenMock.h */,
 				E6A0612813D373EA006EE5D0 /* MainScreenMock.m */,
-				E6ECBF741465513C00B8B196 /* PageControllerSpec.m */,
 			);
 			path = HorizontalScrollViewControllerTests;
 			sourceTree = "<group>";
@@ -615,6 +617,15 @@
 				E6ECBF771465523400B8B196 /* CustomViewControllerProtocol.h */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		E6ECBF78146561E100B8B196 /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+				E6ECBF741465513C00B8B196 /* PageControllerSpec.m */,
+				E6ECBF791465620200B8B196 /* HorizontalScrollViewControllerSpec.m */,
+			);
+			name = Specs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -818,6 +829,7 @@
 				E6ECBF71146550A000B8B196 /* NSObject+KiwiVerifierAdditions.m in Sources */,
 				E6ECBF72146550A000B8B196 /* NSValue+KiwiAdditions.m in Sources */,
 				E6ECBF751465513C00B8B196 /* PageControllerSpec.m in Sources */,
+				E6ECBF7A1465620200B8B196 /* HorizontalScrollViewControllerSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
