@@ -264,4 +264,32 @@ page.view.frame = [self frameForPageAtIndex:index];
     return [[[MainScreenMock alloc] init] autorelease];
 }
 
+
+- (void) testRecycleNoLongerUsedPagesWithfirstNeededPage
+{
+    UIScrollView* pagingScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
+    NSArray* dataSource = [NSArray arrayWithObjects:@"A", @"B", @"C", @"D", nil];
+    ScrollPageViewController* page = [[ScrollPageViewController alloc] init];
+    page.index = 1;
+    NSMutableSet* recycledPages = [[NSMutableSet alloc] init];
+    NSMutableSet* visiblePages = [[NSMutableSet alloc] init];
+    [visiblePages addObject:page];
+    HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
+    
+    [controller setValue:pagingScrollView forKey:@"pagingScrollView"];
+    [controller setValue:dataSource forKey:@"dataSource"];
+    [controller setValue:visiblePages forKey:@"visiblePages"];
+    [controller setValue:recycledPages forKey:@"recycledPages"];
+
+    [controller recycleNoLongerUsedPagesWithfirstNeededPage:2 lastNeededPage:3];
+    STAssertTrue([recycledPages count] == 1, @"The page should have been added to recycledPages. Count was %d", [recycledPages count]);
+    STAssertNil(page.view.superview, @"the page's superview should be nil after the method call");
+    [pagingScrollView release];
+    [page release];
+    [controller release];
+    [visiblePages release];
+    [recycledPages release];
+}
+
+
 @end

@@ -50,6 +50,10 @@
 
 @interface HorizontalScrollViewController()
 - (void) createDataSource;
+- (void) recycleNoLongerUsedPagesWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex;
+- (void) makeMissingPagesVisibleWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex;
+- (void) addLoadingPageToVisiblePagesAtIndex:(int)index;
+- (void) dequeScrollPageToBeVisibleWithIndex:(int)index;
 @end
 
 @implementation HorizontalScrollViewController
@@ -83,8 +87,7 @@
     // Step 2: prepare to tile content
     recycledPages = [[NSMutableSet alloc] init];
     visiblePages  = [[NSMutableSet alloc] init];
-    [self tilePages];
-    
+    [self tilePages];    
 }
 
 
@@ -133,8 +136,21 @@
     lastNeededPageIndex  = MIN(lastNeededPageIndex, [dataSource count]+1); // This is MIN(lastNeededPageIndex, numberOfPages-1) because we have two loading pages => count+2-1 => count+1
         
     // Recycle no-longer-visible pages
+    [self makeMissingPagesVisibleWithfirstNeededPage:firstNeededPageIndex lastNeededPage:lastNeededPageIndex];
+
+    // Remove recycled from visible
+    [visiblePages minusSet:recycledPages];
+    
+    // add missing pages
+    [self recycleNoLongerUsedPagesWithfirstNeededPage:firstNeededPageIndex lastNeededPage:lastNeededPageIndex];
+}
+
+
+- (void) recycleNoLongerUsedPagesWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex 
+{
     for (ScrollPageViewController* page in visiblePages)
     {        
+        NSLog(@"---------%@", page);
         if (page.index < firstNeededPageIndex || page.index > lastNeededPageIndex)
         {
             if (page.index>0 && page.index<[dataSource count]+1)
@@ -145,9 +161,11 @@
             }
         }
     }
-    [visiblePages minusSet:recycledPages];
-    
-    // add missing pages
+}
+
+
+- (void) makeMissingPagesVisibleWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex 
+{
     for (int index = firstNeededPageIndex; index <= lastNeededPageIndex; index++)
     {
         if (![self isDisplayingPageForIndex:index])
@@ -155,26 +173,39 @@
             if(index==0 || index==[dataSource count]+1)
             {
                 // we need to use the loading screen
-                [self configurePage:loadingController forIndex:index];
-                [pagingScrollView addSubview:loadingController.view];
-                [visiblePages addObject:loadingController];
+                [self addLoadingPageToVisiblePagesAtIndex:index];
             }
             else
             {
                 // we need to deque one of the generic  controllers
-                ScrollPageViewController* page = [self dequeueRecycledPage];
-                if (page == nil)
-                {
-                    page = [[[ScrollPageViewController alloc] init] autorelease];
-                }
-                
-                [self configurePage:page forIndex:index];
-                [pagingScrollView addSubview:page.view];
-                [visiblePages addObject:page];
+                [self dequeScrollPageToBeVisibleWithIndex:index];
             }            
         }
     }    
 }
+
+
+- (void) addLoadingPageToVisiblePagesAtIndex:(int)index
+{
+    [self configurePage:loadingController forIndex:index];
+    [pagingScrollView addSubview:loadingController.view];
+    [visiblePages addObject:loadingController];
+}
+
+
+- (void) dequeScrollPageToBeVisibleWithIndex:(int)index
+{
+    ScrollPageViewController* page = [self dequeueRecycledPage];
+    if (page == nil)
+    {
+        page = [[[ScrollPageViewController alloc] init] autorelease];
+    }
+    
+    [self configurePage:page forIndex:index];
+    [pagingScrollView addSubview:page.view];
+    [visiblePages addObject:page];
+}
+
 
 - (ScrollPageViewController*) dequeueRecycledPage
 {
