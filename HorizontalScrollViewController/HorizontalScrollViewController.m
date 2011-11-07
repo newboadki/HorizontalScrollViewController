@@ -148,6 +148,9 @@
 
 - (void) recycleNoLongerUsedPagesWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex 
 {
+    /***********************************************************************************************
+    * Put not visible pages into the reclyedPages array
+	***********************************************************************************************/
     for (ScrollPageViewController* page in visiblePages)
     {        
         if (page.index < firstNeededPageIndex || page.index > lastNeededPageIndex)
@@ -167,6 +170,9 @@
 
 - (void) makeMissingPagesVisibleWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex 
 {
+    /***********************************************************************************************
+     
+     ***********************************************************************************************/
     for (int index = firstNeededPageIndex; index <= lastNeededPageIndex; index++)
     {
         if (![self isDisplayingPageForIndex:index])
@@ -188,6 +194,9 @@
 
 - (void) addLoadingPageToVisiblePagesAtIndex:(int)index
 {
+    /***********************************************************************************************
+
+     ***********************************************************************************************/
     [self configurePage:loadingController forIndex:index];
     [pagingScrollView addSubview:loadingController.view];
     [visiblePages addObject:loadingController];
@@ -196,6 +205,9 @@
 
 - (void) dequeScrollPageToBeVisibleWithIndex:(int)index
 {
+    /***********************************************************************************************
+     
+     ***********************************************************************************************/
     ScrollPageViewController* page = [self dequeueRecycledPage];
     if (page == nil)
     {
@@ -390,9 +402,6 @@
     
     return contentSize;
 }
-
-
-
 
 
 @end

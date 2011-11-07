@@ -16,8 +16,15 @@
 
 @synthesize textLabel;
 
+
+
+#pragma mark - Initializator Methods
+
 - (id) init
 {
+    /**********************************************************************************************
+     * 
+     ***********************************************************************************************/
     self = [super init];
 
     if(self)
@@ -32,10 +39,17 @@
     return self;
 }
 
+
+
+#pragma mark - Rotation helpers
+
 - (CGPoint)pointToCenterAfterRotation{}
 - (CGFloat)scaleToRestoreAfterRotation{}
 - (void)restoreCenterPoint:(CGPoint)oldCenter scale:(CGFloat)oldScale{}
 
+
+
+#pragma mark - Customize the view
 
 - (void) displayViewWithElement:(id)element
 {
@@ -44,10 +58,43 @@
 }
 
 
+
+#pragma mark - CustomViewController Protocol
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+}
+
+
+
+#pragma mark - Memory Management
+
 - (void) dealloc
 {
-    [self setTextLabel:nil];
-    
+    /**********************************************************************************************
+     * Tidy-up
+     ***********************************************************************************************/
+    [self setTextLabel:nil];    
     [super dealloc];
 }
+
 @end
