@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E61DDCB51469314E00B15383 /* NumbersDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E61DDCB41469314E00B15383 /* NumbersDataSource.m */; };
+		E61DDCB61469314E00B15383 /* NumbersDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E61DDCB41469314E00B15383 /* NumbersDataSource.m */; };
 		E620597613CF690C00656735 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E620597513CF690C00656735 /* UIKit.framework */; };
 		E620597813CF690C00656735 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E620597713CF690C00656735 /* Foundation.framework */; };
 		E620597A13CF690C00656735 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E620597913CF690C00656735 /* CoreGraphics.framework */; };
@@ -119,6 +121,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E61DDCB31469314E00B15383 /* NumbersDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumbersDataSource.h; sourceTree = "<group>"; };
+		E61DDCB41469314E00B15383 /* NumbersDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumbersDataSource.m; sourceTree = "<group>"; };
 		E620597113CF690C00656735 /* HorizontalScrollViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HorizontalScrollViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E620597513CF690C00656735 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E620597713CF690C00656735 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -344,6 +348,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E61DDCB21469314E00B15383 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				E61DDCB31469314E00B15383 /* NumbersDataSource.h */,
+				E61DDCB41469314E00B15383 /* NumbersDataSource.m */,
+			);
+			name = DataSource;
+			path = Classes/DataSource;
+			sourceTree = "<group>";
+		};
 		E620596613CF690C00656735 = {
 			isa = PBXGroup;
 			children = (
@@ -376,6 +390,7 @@
 		E620597B13CF690C00656735 /* HorizontalScrollViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E61DDCB21469314E00B15383 /* DataSource */,
 				E6ECBF76146551F200B8B196 /* Protocols */,
 				E62059ED13CF6B3300656735 /* OrderedListDataSource.h */,
 				E62059EE13CF6B3300656735 /* OrderedListDataSource.m */,
@@ -744,6 +759,7 @@
 				E62059EF13CF6B3300656735 /* OrderedListDataSource.m in Sources */,
 				E664C99413DB087000577557 /* LoadingScreenViewController.m in Sources */,
 				E664C99B13DB0F2C00577557 /* PageController.m in Sources */,
+				E61DDCB51469314E00B15383 /* NumbersDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,6 +846,7 @@
 				E6ECBF72146550A000B8B196 /* NSValue+KiwiAdditions.m in Sources */,
 				E6ECBF751465513C00B8B196 /* PageControllerSpec.m in Sources */,
 				E6ECBF7A1465620200B8B196 /* HorizontalScrollViewControllerSpec.m in Sources */,
+				E61DDCB61469314E00B15383 /* NumbersDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

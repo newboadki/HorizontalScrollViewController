@@ -7,8 +7,8 @@
 //
 
 #import "HorizontalScrollViewControllerAppDelegate.h"
-
 #import "HorizontalScrollViewController.h"
+#import "NumbersDataSource.h"
 
 @implementation HorizontalScrollViewControllerAppDelegate
 
@@ -20,7 +20,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-     
+    
+    NumbersDataSource* dataSource = [[NumbersDataSource alloc] initWithDelegate:nil];
+    self.viewController.dataSource = dataSource;
+    [dataSource release];        
+    
     self.window.rootViewController = (UIViewController*)self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

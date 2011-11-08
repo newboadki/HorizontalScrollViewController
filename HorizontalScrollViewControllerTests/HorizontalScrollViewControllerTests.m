@@ -11,7 +11,8 @@
 #import "OCMock.h"
 #import "ScrollPageViewController.h"
 #import "MainScreenMock.h"
-
+#import "OrderedListDataSource.h"
+#import "Kiwi.h"
 
 @implementation HorizontalScrollViewControllerTests
 
@@ -31,8 +32,10 @@
 
 - (void) testLoadView
 {
+    OrderedListDataSource* dataSourceMock = [KWMock mockForClass:[OrderedListDataSource class]];
+    [dataSourceMock stub:@selector(count) andReturn:theValue(4)];
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
-    
+    controller.dataSource = dataSourceMock;
     [controller loadView];
     
     UIScrollView* scrollingView = [controller valueForKey:@"pagingScrollView"];
@@ -59,18 +62,18 @@
 
 
 /*- (void) testTildePages
-{
-    id pageScrollViewMock = [OCMockObject mockForClass:[UIScrollView class]];
-    CGRect bounds = CGRectMake(0.0, 0.0, 320.0, 480.0);
-    NSValue* boundsValue = [NSValue valueWithCGRect:bounds];
-    
-    // [[[pageScrollViewMock stub] bounds] andReturnValue:boundsValue]; // THIS IS A PROBLEM, bounds returns a struct, and we need to call andReturnValue on a stuct...it won't work
-    HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
-    [controller setValue:pageScrollViewMock forKey:@"pagingScrollView"];
-    
-    
-    [controller release];
-}*/
+ {
+ id pageScrollViewMock = [OCMockObject mockForClass:[UIScrollView class]];
+ CGRect bounds = CGRectMake(0.0, 0.0, 320.0, 480.0);
+ NSValue* boundsValue = [NSValue valueWithCGRect:bounds];
+ 
+ // [[[pageScrollViewMock stub] bounds] andReturnValue:boundsValue]; // THIS IS A PROBLEM, bounds returns a struct, and we need to call andReturnValue on a stuct...it won't work
+ HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
+ [controller setValue:pageScrollViewMock forKey:@"pagingScrollView"];
+ 
+ 
+ [controller release];
+ }*/
 
 - (void) testDequeueRecycledPages
 {
@@ -102,7 +105,7 @@
     
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
     [controller setValue:visiblePages forKey:@"visiblePages"];
-
+    
     STAssertTrue([controller isDisplayingPageForIndex:0] == YES, @"isDisplayingPAgeFor index should return true for a visible page");
     STAssertTrue([controller isDisplayingPageForIndex:1] == YES, @"isDisplayingPAgeFor index should return true for a visible page");
     STAssertTrue([controller isDisplayingPageForIndex:2] == NO, @"isDisplayingPAgeFor index should return false for a visible page");
@@ -116,21 +119,21 @@
 /*
  - (void)configurePage:(ScrollPageViewController *)page forIndex:(NSUInteger)index
  {
-page.index = index;
-page.view.frame = [self frameForPageAtIndex:index];
-
-// Use tiled images
-[page displayViewWithElement:[dataSource objectAtIndex:page.index]];
-}
+ page.index = index;
+ page.view.frame = [self frameForPageAtIndex:index];
+ 
+ // Use tiled images
+ [page displayViewWithElement:[dataSource objectAtIndex:page.index]];
+ }
  
  */
 
 - (void) testConfigurePageSetsTheFrame
 {
-
+    
     ScrollPageViewController* page = [[ScrollPageViewController alloc] init];
     UIScrollView* pagingScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
-
+    
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
     [controller setValue:pagingScrollView forKey:@"pagingScrollView"];
     [controller configurePage:page forIndex:1];
@@ -182,25 +185,25 @@ page.view.frame = [self frameForPageAtIndex:index];
     
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
     [controller setValue:pagingScrollView forKey:@"pagingScrollView"];
-
+    
     [controller willRotateToInterfaceOrientation:UIInterfaceOrientationPortrait duration:1.0];
     float firstVisiblePage = [(NSNumber*)[controller valueForKey:@"firstVisiblePageIndexBeforeRotation"] floatValue];
     float percentScrolledIntoFirstVisiblePage = [(NSNumber*)[controller valueForKey:@"percentScrolledIntoFirstVisiblePage"] floatValue];
     
     STAssertTrue(firstVisiblePage == 1.0, @"willRotateToInterfaceOrientation should calculate the firstVisiblePage when offset >=0");
     STAssertTrue(percentScrolledIntoFirstVisiblePage == 0.0, @"willRotateToInterfaceOrientation should calculate the percentScrolledIntoFirstVisiblePAge when offset >=0");
-
+    
     offset = CGPointMake(-320.0, 0.0);
     pagingScrollView.contentOffset = offset;
     [controller setValue:pagingScrollView forKey:@"pagingScrollView"];    
     [controller willRotateToInterfaceOrientation:UIInterfaceOrientationPortrait duration:1.0];
     firstVisiblePage = [(NSNumber*)[controller valueForKey:@"firstVisiblePageIndexBeforeRotation"] floatValue];
     percentScrolledIntoFirstVisiblePage = [(NSNumber*)[controller valueForKey:@"percentScrolledIntoFirstVisiblePage"] floatValue];
-
+    
     
     STAssertTrue(firstVisiblePage == 0.0, @"willRotateToInterfaceOrientation should set the firstVisiblePage to 0 when offset <0");
     STAssertTrue(percentScrolledIntoFirstVisiblePage == -1.0, @"willRotateToInterfaceOrientation should calculate the percentScrolledIntoFirstVisiblePAge when offset <0");
-
+    
     
     [pagingScrollView release];
     [controller release];
@@ -211,13 +214,13 @@ page.view.frame = [self frameForPageAtIndex:index];
 {
     // assuming PADDING is 0
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
-
+    
     Swizzle([UIScreen class], @selector(mainScreen), [HorizontalScrollViewControllerTests class], @selector(mainScreenStub));
     CGRect frame = [controller frameForPagingScrollView];
     STAssertTrue(frame.origin.x == 0, @"The origin x should be 0. Found %f", frame.origin.x);
     STAssertTrue(frame.size.width == 320.0, @"The origin x should be 0. Found %f", frame.size.width);
     [controller release];
-
+    
 }
 
 
@@ -280,7 +283,7 @@ page.view.frame = [self frameForPageAtIndex:index];
     [controller setValue:dataSource forKey:@"dataSource"];
     [controller setValue:visiblePages forKey:@"visiblePages"];
     [controller setValue:recycledPages forKey:@"recycledPages"];
-
+    
     [controller recycleNoLongerUsedPagesWithfirstNeededPage:2 lastNeededPage:3];
     STAssertTrue([recycledPages count] == 1, @"The page should have been added to recycledPages. Count was %d", [recycledPages count]);
     STAssertNil(page.view.superview, @"the page's superview should be nil after the method call");

@@ -1,7 +1,7 @@
 /*
-     File: PhotoViewController.h
+ File: PhotoViewController.h
  Abstract: Configures and displays the paging scroll view and handles tiling and page configuration.
-  Version: 1.1
+ Version: 1.1
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -47,6 +47,8 @@
 
 #import <UIKit/UIKit.h>
 #import "LoadingScreenViewController.h"
+#import "OrderedListDataSource.h"
+
 
 @class ImageScrollView;
 @class ScrollPageViewController;
@@ -56,13 +58,12 @@
     UIScrollView* pagingScrollView;    
     NSMutableSet* recycledPages;
     NSMutableSet* visiblePages;
-    NSArray*      dataSource;
-    LoadingScreenViewController* loadingController;
-
-    // these values are stored off before we start rotation so we adjust our content offset appropriately during rotation
-    int           firstVisiblePageIndexBeforeRotation;
-    CGFloat       percentScrolledIntoFirstVisiblePage;
+    LoadingScreenViewController* loadingController;    
+    int           firstVisiblePageIndexBeforeRotation; // stored before we start rotation so we adjust our content offset during rotation
+    CGFloat       percentScrolledIntoFirstVisiblePage; // stored before we start rotation so we adjust our content offset during rotation
 }
+
+@property (retain, nonatomic) OrderedListDataSource* dataSource;
 
 - (void)configurePage:(PageController *)page forIndex:(NSUInteger)index;
 - (BOOL)isDisplayingPageForIndex:(NSUInteger)index;

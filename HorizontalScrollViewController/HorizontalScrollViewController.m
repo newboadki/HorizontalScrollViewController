@@ -1,7 +1,7 @@
 /*
-     File: PhotoViewController.m
+ File: PhotoViewController.m
  Abstract: Configures and displays the paging scroll view and handles tiling and page configuration.
-  Version: 1.1
+ Version: 1.1
  
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -49,7 +49,6 @@
 #import "ScrollPageViewController.h"
 
 @interface HorizontalScrollViewController()
-- (void) createDataSource;
 - (void) recycleNoLongerUsedPagesWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex;
 - (void) makeMissingPagesVisibleWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex;
 - (void) addLoadingPageToVisiblePagesAtIndex:(int)index;
@@ -57,6 +56,9 @@
 @end
 
 @implementation HorizontalScrollViewController
+
+@synthesize dataSource;
+
 
 #pragma mark -
 #pragma mark View loading and unloading
@@ -66,9 +68,6 @@
     /***********************************************************************************************/
     /* Create and configure the scrolling view.                                                    */
 	/***********************************************************************************************/
-    // Create an instance of the data Source
-    [self createDataSource];
-    
     // Create the loading controller
     self->loadingController = [[LoadingScreenViewController alloc] init];
     
@@ -91,12 +90,6 @@
 }
 
 
-- (void) createDataSource
-{
-    dataSource = [[NSArray arrayWithObjects:@"UNO", @"DOS", @"TRES", @"CUATRO", nil] retain];
-}
-
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -110,14 +103,6 @@
     loadingController = nil;    
 }
 
-
-- (void)dealloc
-{
-    [pagingScrollView release];
-    [dataSource release];
-    
-    [super dealloc];
-}
 
 
 #pragma mark -
@@ -134,10 +119,10 @@
     int lastNeededPageIndex  = floorf((CGRectGetMaxX(visibleBounds)-1) / CGRectGetWidth(visibleBounds));
     firstNeededPageIndex = MAX(firstNeededPageIndex, 0);
     lastNeededPageIndex  = MIN(lastNeededPageIndex, [dataSource count]+1); // This is MIN(lastNeededPageIndex, numberOfPages-1) because we have two loading pages => count+2-1 => count+1
-        
+    
     // Recycle no-longer-visible pages
     [self makeMissingPagesVisibleWithfirstNeededPage:firstNeededPageIndex lastNeededPage:lastNeededPageIndex];
-
+    
     // Remove recycled from visible
     [visiblePages minusSet:recycledPages];
     
@@ -148,9 +133,6 @@
 
 - (void) recycleNoLongerUsedPagesWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex 
 {
-    /***********************************************************************************************
-    * Put not visible pages into the reclyedPages array
-	***********************************************************************************************/
     for (ScrollPageViewController* page in visiblePages)
     {        
         if (page.index < firstNeededPageIndex || page.index > lastNeededPageIndex)
@@ -170,9 +152,6 @@
 
 - (void) makeMissingPagesVisibleWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex 
 {
-    /***********************************************************************************************
-     
-     ***********************************************************************************************/
     for (int index = firstNeededPageIndex; index <= lastNeededPageIndex; index++)
     {
         if (![self isDisplayingPageForIndex:index])
@@ -194,9 +173,6 @@
 
 - (void) addLoadingPageToVisiblePagesAtIndex:(int)index
 {
-    /***********************************************************************************************
-
-     ***********************************************************************************************/
     [self configurePage:loadingController forIndex:index];
     [pagingScrollView addSubview:loadingController.view];
     [visiblePages addObject:loadingController];
@@ -205,9 +181,6 @@
 
 - (void) dequeScrollPageToBeVisibleWithIndex:(int)index
 {
-    /***********************************************************************************************
-     
-     ***********************************************************************************************/
     ScrollPageViewController* page = [self dequeueRecycledPage];
     if (page == nil)
     {
@@ -276,7 +249,7 @@
     
     if (index>0 && index<[dataSource count]+1)
     {
-        element = [dataSource objectAtIndex:page.index-1];
+        element = [dataSource elementAtIndex:page.index-1];
     }
     
     [page displayViewWithElement:element];
@@ -313,7 +286,7 @@
     // Content offset is the point in the content that is currently visible at the top left of the scroll's view bounds
     CGFloat offset = pagingScrollView.contentOffset.x;
     CGFloat pageWidth = pagingScrollView.bounds.size.width;
-
+    
     if (offset >= 0)
     {        
         firstVisiblePageIndexBeforeRotation = floorf(offset / pageWidth);
@@ -385,7 +358,7 @@
     CGRect pageFrame = bounds;
     pageFrame.size.width -= (2 * PADDING); // The padding is added into the paginScrollViewBounds. So we substract it to calculate the width
     pageFrame.origin.x = (bounds.size.width * index) + PADDING; // keep the padding in mind to position the page's origin.x
-
+    
     return pageFrame;
 }
 
@@ -401,6 +374,21 @@
     CGSize contentSize = CGSizeMake(bounds.size.width * numberOfPages, bounds.size.height);
     
     return contentSize;
+}
+
+
+
+#pragma mark - Memory Management
+
+- (void)dealloc
+{
+    /**********************************************************************************************
+     * Tidy-up
+     ***********************************************************************************************/
+    [pagingScrollView release];
+    [self setDataSource:nil];
+    
+    [super dealloc];
 }
 
 

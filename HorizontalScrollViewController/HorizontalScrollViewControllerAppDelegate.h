@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class HorizontalScrollViewControllerViewController;
+@class HorizontalScrollViewController;
 
 @interface HorizontalScrollViewControllerAppDelegate : NSObject <UIApplicationDelegate> {
 
@@ -16,6 +16,6 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
-@property (nonatomic, retain) IBOutlet HorizontalScrollViewControllerViewController *viewController;
+@property (nonatomic, retain) IBOutlet HorizontalScrollViewController *viewController;
 
 @end
