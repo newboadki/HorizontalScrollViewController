@@ -27,8 +27,6 @@
 		E67CB1AF1469472A0022FDCF /* OrderedListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E67CB19A1469472A0022FDCF /* OrderedListDataSource.m */; };
 		E67CB1B01469472A0022FDCF /* PageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E67CB1A01469472A0022FDCF /* PageController.m */; };
 		E67CB1B11469472A0022FDCF /* PageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E67CB1A01469472A0022FDCF /* PageController.m */; };
-		E67CB1B21469472A0022FDCF /* ScrollPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E67CB1A21469472A0022FDCF /* ScrollPageViewController.m */; };
-		E67CB1B31469472A0022FDCF /* ScrollPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E67CB1A21469472A0022FDCF /* ScrollPageViewController.m */; };
 		E67CB1B41469472A0022FDCF /* LoadingScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E67CB1A61469472A0022FDCF /* LoadingScreenViewController.m */; };
 		E67CB1B51469472A0022FDCF /* LoadingScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E67CB1A61469472A0022FDCF /* LoadingScreenViewController.m */; };
 		E67CB1B61469472A0022FDCF /* LoadingScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E67CB1A71469472A0022FDCF /* LoadingScreenViewController.xib */; };
@@ -39,6 +37,8 @@
 		E67CB1BD146947970022FDCF /* NumbersDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E67CB1BB146947970022FDCF /* NumbersDataSource.m */; };
 		E6A0612513D3727E006EE5D0 /* MethodSwizzleHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E6A0612413D3727E006EE5D0 /* MethodSwizzleHelper.m */; };
 		E6A0612913D373EA006EE5D0 /* MainScreenMock.m in Sources */ = {isa = PBXBuildFile; fileRef = E6A0612813D373EA006EE5D0 /* MainScreenMock.m */; };
+		E6D94C0314694D1B00A37234 /* ScrollPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D94C0214694D1B00A37234 /* ScrollPageViewController.m */; };
+		E6D94C0414694D1B00A37234 /* ScrollPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6D94C0214694D1B00A37234 /* ScrollPageViewController.m */; };
 		E6EC5A5813CF753300F85BA8 /* DataSourceDelegateMock.m in Sources */ = {isa = PBXBuildFile; fileRef = E6EC5A5713CF753200F85BA8 /* DataSourceDelegateMock.m */; };
 		E6ECBF30146550A000B8B196 /* KWAfterAllNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECBEA0146550A000B8B196 /* KWAfterAllNode.m */; };
 		E6ECBF31146550A000B8B196 /* KWAfterEachNode.m in Sources */ = {isa = PBXBuildFile; fileRef = E6ECBEA2146550A000B8B196 /* KWAfterEachNode.m */; };
@@ -154,8 +154,6 @@
 		E67CB19C1469472A0022FDCF /* OrderedListDataSourceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedListDataSourceProtocol.h; sourceTree = "<group>"; };
 		E67CB19F1469472A0022FDCF /* PageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageController.h; sourceTree = "<group>"; };
 		E67CB1A01469472A0022FDCF /* PageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageController.m; sourceTree = "<group>"; };
-		E67CB1A11469472A0022FDCF /* ScrollPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollPageViewController.h; sourceTree = "<group>"; };
-		E67CB1A21469472A0022FDCF /* ScrollPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPageViewController.m; sourceTree = "<group>"; };
 		E67CB1A51469472A0022FDCF /* LoadingScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingScreenViewController.h; sourceTree = "<group>"; };
 		E67CB1A61469472A0022FDCF /* LoadingScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingScreenViewController.m; sourceTree = "<group>"; };
 		E67CB1A71469472A0022FDCF /* LoadingScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingScreenViewController.xib; sourceTree = "<group>"; };
@@ -168,6 +166,8 @@
 		E6A0612413D3727E006EE5D0 /* MethodSwizzleHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodSwizzleHelper.m; sourceTree = "<group>"; };
 		E6A0612713D373EA006EE5D0 /* MainScreenMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenMock.h; sourceTree = "<group>"; };
 		E6A0612813D373EA006EE5D0 /* MainScreenMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenMock.m; sourceTree = "<group>"; };
+		E6D94C0114694D1B00A37234 /* ScrollPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollPageViewController.h; path = Classes/ScrollPageViewController.h; sourceTree = "<group>"; };
+		E6D94C0214694D1B00A37234 /* ScrollPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollPageViewController.m; path = Classes/ScrollPageViewController.m; sourceTree = "<group>"; };
 		E6EC5A5613CF753200F85BA8 /* DataSourceDelegateMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceDelegateMock.h; sourceTree = "<group>"; };
 		E6EC5A5713CF753200F85BA8 /* DataSourceDelegateMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceDelegateMock.m; sourceTree = "<group>"; };
 		E6ECBE9A146550A000B8B196 /* Kiwi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kiwi.h; sourceTree = "<group>"; };
@@ -381,9 +381,11 @@
 		E620597B13CF690C00656735 /* HorizontalScrollViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E6D94C0114694D1B00A37234 /* ScrollPageViewController.h */,
+				E6D94C0214694D1B00A37234 /* ScrollPageViewController.m */,
+				E67CB1921469472A0022FDCF /* HorizontalScrollerComponent */,
 				E67CB1BA146947970022FDCF /* NumbersDataSource.h */,
 				E67CB1BB146947970022FDCF /* NumbersDataSource.m */,
-				E67CB1921469472A0022FDCF /* HorizontalScrollerComponent */,
 				E67CB1A81469472A0022FDCF /* HorizontalScrollViewControllerAppDelegate.h */,
 				E67CB1A91469472A0022FDCF /* HorizontalScrollViewControllerAppDelegate.m */,
 				E620598713CF690D00656735 /* MainWindow.xib */,
@@ -494,8 +496,6 @@
 				E67CB1BE146947D30022FDCF /* CustomViewControllerProtocol.h */,
 				E67CB19F1469472A0022FDCF /* PageController.h */,
 				E67CB1A01469472A0022FDCF /* PageController.m */,
-				E67CB1A11469472A0022FDCF /* ScrollPageViewController.h */,
-				E67CB1A21469472A0022FDCF /* ScrollPageViewController.m */,
 			);
 			path = ContentPage;
 			sourceTree = "<group>";
@@ -789,10 +789,10 @@
 				E67CB1AA1469472A0022FDCF /* HorizontalScrollViewController.m in Sources */,
 				E67CB1AE1469472A0022FDCF /* OrderedListDataSource.m in Sources */,
 				E67CB1B01469472A0022FDCF /* PageController.m in Sources */,
-				E67CB1B21469472A0022FDCF /* ScrollPageViewController.m in Sources */,
 				E67CB1B41469472A0022FDCF /* LoadingScreenViewController.m in Sources */,
 				E67CB1B81469472A0022FDCF /* HorizontalScrollViewControllerAppDelegate.m in Sources */,
 				E67CB1BC146947970022FDCF /* NumbersDataSource.m in Sources */,
+				E6D94C0314694D1B00A37234 /* ScrollPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,10 +877,10 @@
 				E67CB1AB1469472A0022FDCF /* HorizontalScrollViewController.m in Sources */,
 				E67CB1AF1469472A0022FDCF /* OrderedListDataSource.m in Sources */,
 				E67CB1B11469472A0022FDCF /* PageController.m in Sources */,
-				E67CB1B31469472A0022FDCF /* ScrollPageViewController.m in Sources */,
 				E67CB1B51469472A0022FDCF /* LoadingScreenViewController.m in Sources */,
 				E67CB1B91469472A0022FDCF /* HorizontalScrollViewControllerAppDelegate.m in Sources */,
 				E67CB1BD146947970022FDCF /* NumbersDataSource.m in Sources */,
+				E6D94C0414694D1B00A37234 /* ScrollPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
