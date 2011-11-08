@@ -173,6 +173,8 @@
 
 - (void) addLoadingPageToVisiblePagesAtIndex:(int)index
 {
+    /**
+     */
     [self configurePage:loadingController forIndex:index];
     [pagingScrollView addSubview:loadingController.view];
     [visiblePages addObject:loadingController];
@@ -181,6 +183,8 @@
 
 - (void) dequeScrollPageToBeVisibleWithIndex:(int)index
 {
+    /**
+     */
     ScrollPageViewController* page = [self dequeueRecycledPage];
     if (page == nil)
     {
