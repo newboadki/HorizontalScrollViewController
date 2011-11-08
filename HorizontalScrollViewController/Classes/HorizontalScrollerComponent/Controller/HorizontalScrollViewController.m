@@ -69,7 +69,7 @@
     /* Create and configure the scrolling view.                                                    */
 	/***********************************************************************************************/
     // Create the loading controller
-    self->loadingController = [[LoadingScreenViewController alloc] init];
+    self->loadingController = [[LoadingScreenViewController alloc] initWithNibName:@"LoadingScreenViewController" bundle:[NSBundle mainBundle]];
     
     // Step 1: make the outer paging scroll view
     CGRect pagingScrollViewFrame = [self frameForPagingScrollView];

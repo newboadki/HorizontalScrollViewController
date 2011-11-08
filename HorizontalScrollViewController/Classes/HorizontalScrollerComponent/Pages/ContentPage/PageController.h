@@ -20,5 +20,6 @@
 - (CGFloat)scaleToRestoreAfterRotation;
 - (void)restoreCenterPoint:(CGPoint)oldCenter scale:(CGFloat)oldScale;
 - (void) displayViewWithElement:(id)element;
+- (id) initWithNibName:(NSString*)nibName bundle:(NSBundle*)bundle;
 
 @end
