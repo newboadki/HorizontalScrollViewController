@@ -381,11 +381,11 @@
 		E620597B13CF690C00656735 /* HorizontalScrollViewController */ = {
 			isa = PBXGroup;
 			children = (
-				E6D94C0114694D1B00A37234 /* ScrollPageViewController.h */,
-				E6D94C0214694D1B00A37234 /* ScrollPageViewController.m */,
 				E67CB1921469472A0022FDCF /* HorizontalScrollerComponent */,
 				E67CB1BA146947970022FDCF /* NumbersDataSource.h */,
 				E67CB1BB146947970022FDCF /* NumbersDataSource.m */,
+				E6D94C0114694D1B00A37234 /* ScrollPageViewController.h */,
+				E6D94C0214694D1B00A37234 /* ScrollPageViewController.m */,
 				E67CB1A81469472A0022FDCF /* HorizontalScrollViewControllerAppDelegate.h */,
 				E67CB1A91469472A0022FDCF /* HorizontalScrollViewControllerAppDelegate.m */,
 				E620598713CF690D00656735 /* MainWindow.xib */,
