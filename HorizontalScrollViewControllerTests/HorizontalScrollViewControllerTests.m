@@ -9,7 +9,7 @@
 #import "HorizontalScrollViewControllerTests.h"
 #import <objc/runtime.h>
 #import "OCMock.h"
-#import "ScrollPageViewController.h"
+#import "PageController.h"
 #import "MainScreenMock.h"
 #import "OrderedListDataSource.h"
 #import "Kiwi.h"
@@ -77,12 +77,12 @@
 
 - (void) testDequeueRecycledPages
 {
-    id pageMock = [OCMockObject mockForClass:[ScrollPageViewController class]];
+    id pageMock = [OCMockObject mockForClass:[PageController class]];
     NSMutableSet* recycledPages = [[NSMutableSet alloc] init];
     [recycledPages addObject:pageMock];
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
     [controller setValue:recycledPages forKey:@"recycledPages"];
-    ScrollPageViewController* dequeuedPage = [controller dequeueRecycledPage];    
+    PageController* dequeuedPage = [controller dequeueRecycledPage];    
     STAssertNotNil(dequeuedPage, @"dequeueRecycledPage should return an object if it contains one");
     dequeuedPage = [controller dequeueRecycledPage];    
     STAssertNil(dequeuedPage, @"dequeueRecycledPage should return nil when there aren't more queued pages");
@@ -96,8 +96,8 @@
 - (void) testIsDisplayingPageForIndex
 {
     NSMutableSet* visiblePages = [[NSMutableSet alloc] init];
-    ScrollPageViewController* page1 = [[ScrollPageViewController alloc] init];
-    ScrollPageViewController* page2 = [[ScrollPageViewController alloc] init];
+    PageController* page1 = [[PageController alloc] init];
+    PageController* page2 = [[PageController alloc] init];
     page1.index = 0;    
     page2.index = 1;
     [visiblePages addObject:page1];
@@ -131,7 +131,7 @@
 - (void) testConfigurePageSetsTheFrame
 {
     
-    ScrollPageViewController* page = [[ScrollPageViewController alloc] init];
+    PageController* page = [[PageController alloc] init];
     UIScrollView* pagingScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
     
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
@@ -158,7 +158,7 @@
     
     // Because of this issue too, we can't really test this method, as we need to set the index to different values to test 
     // which method gets called
-    id page = [OCMockObject niceMockForClass:[ScrollPageViewController class]];
+    id page = [OCMockObject niceMockForClass:[PageController class]];
     [[page expect] displayViewWithElement:nil];// when the index is 0 or [dataSource count]+1 the method needs to be called with nil
     int index = 0;
     NSValue* indexValue = [NSValue valueWithBytes:&index objCType:@encode(int)];
@@ -272,7 +272,7 @@
 {
     UIScrollView* pagingScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
     NSArray* dataSource = [NSArray arrayWithObjects:@"A", @"B", @"C", @"D", nil];
-    ScrollPageViewController* page = [[ScrollPageViewController alloc] init];
+    PageController* page = [[PageController alloc] init];
     page.index = 1;
     NSMutableSet* recycledPages = [[NSMutableSet alloc] init];
     NSMutableSet* visiblePages = [[NSMutableSet alloc] init];

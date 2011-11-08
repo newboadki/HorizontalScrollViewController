@@ -51,7 +51,7 @@
 
 
 @class ImageScrollView;
-@class ScrollPageViewController;
+@class PurplePageController;
 
 @interface HorizontalScrollViewController : UIViewController <UIScrollViewDelegate>
 {
@@ -73,7 +73,7 @@
 - (CGSize)contentSizeForPagingScrollView;
 
 - (void)tilePages;
-- (ScrollPageViewController*)dequeueRecycledPage;
+- (PurplePageController*)dequeueRecycledPage;
 
 @end
 

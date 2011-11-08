@@ -15,10 +15,15 @@
 @synthesize spinnerView;
 
 
+#pragma mark - Rotation helpers
+
 - (CGPoint)pointToCenterAfterRotation{}
 - (CGFloat)scaleToRestoreAfterRotation{}
 - (void)restoreCenterPoint:(CGPoint)oldCenter scale:(CGFloat)oldScale{}
 
+
+
+#pragma mark - Customize the view
 
 - (void) displayViewWithElement:(id)element
 {
@@ -28,23 +33,26 @@
 
 
 
+#pragma mark - CustomViewController Protocol
 
-- (void)dealloc
+- (void)viewWillAppear:(BOOL)animated{}
+- (void)viewDidAppear:(BOOL)animated{}
+- (void)viewWillDisappear:(BOOL)animated{}
+- (void)viewDidDisappear:(BOOL)animated{}
+
+
+
+#pragma mark - Memory Management
+
+- (void) dealloc
 {
+    /**********************************************************************************************
+     * Tidy-up
+     ***********************************************************************************************/
     [self setSpinnerView:nil];
     [self setLoadingLabel:nil];
     
     [super dealloc];
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    // Release any cached data, images, etc that aren't in use.
-    [super didReceiveMemoryWarning];
-    
-
 }
 
 @end

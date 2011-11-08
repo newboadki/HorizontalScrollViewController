@@ -14,6 +14,6 @@
 }
 
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView* spinnerView;
-@property (retain, nonatomic)   IBOutlet UILabel*                 loadingLabel;
+@property (retain, nonatomic) IBOutlet UILabel*                 loadingLabel;
 
 @end

@@ -46,7 +46,7 @@
  */
 
 #import "HorizontalScrollViewController.h"
-#import "ScrollPageViewController.h"
+#import "PageController.h"
 
 @interface HorizontalScrollViewController()
 - (void) recycleNoLongerUsedPagesWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex;
@@ -133,7 +133,7 @@
 
 - (void) recycleNoLongerUsedPagesWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex 
 {
-    for (ScrollPageViewController* page in visiblePages)
+    for (PageController* page in visiblePages)
     {        
         if (page.index < firstNeededPageIndex || page.index > lastNeededPageIndex)
         {
@@ -178,7 +178,9 @@
     /**
      */
     [self configurePage:loadingController forIndex:index];
+    [loadingController viewWillAppear:YES];
     [pagingScrollView addSubview:loadingController.view];
+    [loadingController viewDidAppear:YES];
     [visiblePages addObject:loadingController];
 }
 
@@ -187,10 +189,10 @@
 {
     /**
      */
-    ScrollPageViewController* page = [self dequeueRecycledPage];
+    PageController* page = [self dequeueRecycledPage];
     if (page == nil)
     {
-        page = [[[ScrollPageViewController alloc] init] autorelease];
+        page = [[[PageController alloc] init] autorelease];
     }
     
     
@@ -202,12 +204,12 @@
 }
 
 
-- (ScrollPageViewController*) dequeueRecycledPage
+- (PageController*) dequeueRecycledPage
 {
     /***********************************************************************************************/
     /* We get any object from the recycledPages set, we remove from it, and return it.             */
 	/***********************************************************************************************/
-    ScrollPageViewController* page = [recycledPages anyObject];
+    PageController* page = [recycledPages anyObject];
     
     if (page) 
     {
@@ -229,7 +231,7 @@
 	/***********************************************************************************************/
     BOOL foundPage = NO;
     
-    for (ScrollPageViewController* page in visiblePages)
+    for (PageController* page in visiblePages)
     {
         if (page.index == index)
         {
@@ -315,7 +317,7 @@
     pagingScrollView.contentSize = [self contentSizeForPagingScrollView];
     
     // Adjust frames and configuration of each visible page
-    for (ScrollPageViewController* page in visiblePages)
+    for (PageController* page in visiblePages)
     {
         CGPoint restorePoint = [page pointToCenterAfterRotation];
         CGFloat restoreScale = [page scaleToRestoreAfterRotation];
