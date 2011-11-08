@@ -58,7 +58,7 @@
 @implementation HorizontalScrollViewController
 
 @synthesize dataSource;
-
+@synthesize pageControllerClass;
 
 #pragma mark -
 #pragma mark View loading and unloading
@@ -192,15 +192,17 @@
     PageController* page = [self dequeueRecycledPage];
     if (page == nil)
     {
-        page = [[[PageController alloc] init] autorelease];
+        page = [[[self.pageControllerClass alloc] init] autorelease];
     }
     
-    
-    [self configurePage:page forIndex:index];
-    [page viewWillAppear:YES];
-    [pagingScrollView addSubview:page.view];
-    [page viewDidAppear:YES];
-    [visiblePages addObject:page];
+    if (page)
+    {
+        [self configurePage:page forIndex:index];
+        [page viewWillAppear:YES];
+        [pagingScrollView addSubview:page.view];
+        [page viewDidAppear:YES];
+        [visiblePages addObject:page];
+    }
 }
 
 

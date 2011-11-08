@@ -51,7 +51,7 @@
 
 
 @class ImageScrollView;
-@class PurplePageController;
+@class PageController;
 
 @interface HorizontalScrollViewController : UIViewController <UIScrollViewDelegate>
 {
@@ -64,6 +64,7 @@
 }
 
 @property (retain, nonatomic) OrderedListDataSource* dataSource;
+@property (assign, nonatomic) Class pageControllerClass;
 
 - (void)configurePage:(PageController *)page forIndex:(NSUInteger)index;
 - (BOOL)isDisplayingPageForIndex:(NSUInteger)index;
@@ -73,7 +74,7 @@
 - (CGSize)contentSizeForPagingScrollView;
 
 - (void)tilePages;
-- (PurplePageController*)dequeueRecycledPage;
+- (PageController*)dequeueRecycledPage;
 
 @end
 

@@ -9,6 +9,7 @@
 #import "HorizontalScrollViewControllerAppDelegate.h"
 #import "HorizontalScrollViewController.h"
 #import "NumbersDataSource.h"
+#import "PurplePageController.h"
 
 @implementation HorizontalScrollViewControllerAppDelegate
 
@@ -23,6 +24,7 @@
     
     NumbersDataSource* dataSource = [[NumbersDataSource alloc] initWithDelegate:nil];
     self.viewController.dataSource = dataSource;
+    self.viewController.pageControllerClass = [PurplePageController class];
     [dataSource release];        
     
     self.window.rootViewController = (UIViewController*)self.viewController;

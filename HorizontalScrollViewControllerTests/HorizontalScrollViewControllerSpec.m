@@ -5,6 +5,7 @@
 #import "PageController.h"
 #import "LoadingScreenViewController.h"
 #import "OrderedListDataSource.h"
+#import "PurplePageController.h"
 
 SPEC_BEGIN(HorizontalScrollViewControllerSpec)
 
@@ -24,6 +25,7 @@ describe(@"dequeScrollPageToBeVisibleWithIndex", ^{
     });
         
     it(@"should create a page", ^{
+        controller.pageControllerClass = [PurplePageController class];
         NSMutableSet* visiblePages = [controller valueForKey:@"visiblePages"];
         STAssertTrue([visiblePages count] == 0, @"");
         [controller dequeScrollPageToBeVisibleWithIndex:0];
