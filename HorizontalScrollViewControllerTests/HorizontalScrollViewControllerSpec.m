@@ -147,4 +147,13 @@ describe(@"addLoadingPageToVisiblePagesAtIndex", ^{
     });
 });
 
+
+describe(@"pageControllerClass property", ^{
+    it(@"should have a property called pageControllerClass", ^{
+        HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
+        controller.pageControllerClass = [PageController class];
+        STAssertTrue(controller.pageControllerClass == [PageController class], @"");
+    });
+});
+
 SPEC_END

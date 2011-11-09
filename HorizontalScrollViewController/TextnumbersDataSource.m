@@ -1,15 +1,15 @@
 //
-//  NumbersDataSource.m
+//  TextnumbersDataSource.m
 //  HorizontalScrollViewController
 //
-//  Created by Borja Arias on 07/11/2011.
+//  Created by Borja Arias on 08/11/2011.
 //  Copyright (c) 2011 Unboxed Consulting. All rights reserved.
 //
 
-#import "NumbersDataSource.h"
+#import "TextnumbersDataSource.h"
 
 
-@implementation NumbersDataSource
+@implementation TextnumbersDataSource
 
 
 - (id) initWithDelegate:(id <OrderedListDataSourceDelegateProtocol>)theDelegate
@@ -19,11 +19,11 @@
     /***********************************************************************************************/
     if ((self = [super initWithDelegate:theDelegate]))
     {
-        [self->elementsArray addObject:[NSNumber numberWithInt:0]];
-        [self->elementsArray addObject:[NSNumber numberWithInt:1]];
-        [self->elementsArray addObject:[NSNumber numberWithInt:2]];
-        [self->elementsArray addObject:[NSNumber numberWithInt:3]];
-        [self->elementsArray addObject:[NSNumber numberWithInt:4]];    
+        [self->elementsArray addObject:@"ZERO"];
+        [self->elementsArray addObject:@"ONE"];
+        [self->elementsArray addObject:@"TWO"];
+        [self->elementsArray addObject:@"THREE"];
+        [self->elementsArray addObject:@"FOUR"];
     }
     
     return self;

@@ -8,7 +8,7 @@
 
 #import "HorizontalScrollViewControllerAppDelegate.h"
 #import "HorizontalScrollViewController.h"
-#import "NumbersDataSource.h"
+#import "TextnumbersDataSource.h"
 #import "PurplePageController.h"
 
 @implementation HorizontalScrollViewControllerAppDelegate
@@ -22,7 +22,7 @@
 {
     // Override point for customization after application launch.
     
-    NumbersDataSource* dataSource = [[NumbersDataSource alloc] initWithDelegate:nil];
+    TextnumbersDataSource* dataSource = [[TextnumbersDataSource alloc] initWithDelegate:nil];
     self.viewController.dataSource = dataSource;
     self.viewController.pageControllerClass = [PurplePageController class];
     [dataSource release];        

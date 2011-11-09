@@ -21,6 +21,8 @@
 		E62059A513CF690D00656735 /* HorizontalScrollViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E62059A413CF690D00656735 /* HorizontalScrollViewControllerTests.m */; };
 		E62059C613CF699400656735 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E62059BF13CF699400656735 /* libOCMock.a */; };
 		E62059F413CF702400656735 /* OrderedListDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E62059F313CF702400656735 /* OrderedListDataSourceTests.m */; };
+		E67AD65E1469A80D00F972F6 /* TextnumbersDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E67AD65D1469A80D00F972F6 /* TextnumbersDataSource.m */; };
+		E67AD65F1469A80D00F972F6 /* TextnumbersDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E67AD65D1469A80D00F972F6 /* TextnumbersDataSource.m */; };
 		E67CB1AA1469472A0022FDCF /* HorizontalScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E67CB1951469472A0022FDCF /* HorizontalScrollViewController.m */; };
 		E67CB1AB1469472A0022FDCF /* HorizontalScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E67CB1951469472A0022FDCF /* HorizontalScrollViewController.m */; };
 		E67CB1AE1469472A0022FDCF /* OrderedListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E67CB19A1469472A0022FDCF /* OrderedListDataSource.m */; };
@@ -146,6 +148,8 @@
 		E62059C513CF699400656735 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		E62059F213CF702400656735 /* OrderedListDataSourceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedListDataSourceTests.h; sourceTree = "<group>"; };
 		E62059F313CF702400656735 /* OrderedListDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedListDataSourceTests.m; sourceTree = "<group>"; };
+		E67AD65C1469A80D00F972F6 /* TextnumbersDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextnumbersDataSource.h; sourceTree = "<group>"; };
+		E67AD65D1469A80D00F972F6 /* TextnumbersDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextnumbersDataSource.m; sourceTree = "<group>"; };
 		E67CB1941469472A0022FDCF /* HorizontalScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalScrollViewController.h; sourceTree = "<group>"; };
 		E67CB1951469472A0022FDCF /* HorizontalScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalScrollViewController.m; sourceTree = "<group>"; };
 		E67CB1991469472A0022FDCF /* OrderedListDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedListDataSource.h; sourceTree = "<group>"; };
@@ -166,7 +170,7 @@
 		E6A0612413D3727E006EE5D0 /* MethodSwizzleHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodSwizzleHelper.m; sourceTree = "<group>"; };
 		E6A0612713D373EA006EE5D0 /* MainScreenMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenMock.h; sourceTree = "<group>"; };
 		E6A0612813D373EA006EE5D0 /* MainScreenMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenMock.m; sourceTree = "<group>"; };
-		E6D94C0114694D1B00A37234 /* PurplePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; name = PurplePageController.h; path = Classes/PurplePageController.h; sourceTree = "<group>"; };
+		E6D94C0114694D1B00A37234 /* PurplePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PurplePageController.h; path = Classes/PurplePageController.h; sourceTree = "<group>"; };
 		E6D94C0214694D1B00A37234 /* PurplePageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PurplePageController.m; path = Classes/PurplePageController.m; sourceTree = "<group>"; };
 		E6EC5A5613CF753200F85BA8 /* DataSourceDelegateMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceDelegateMock.h; sourceTree = "<group>"; };
 		E6EC5A5713CF753200F85BA8 /* DataSourceDelegateMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSourceDelegateMock.m; sourceTree = "<group>"; };
@@ -390,6 +394,8 @@
 				E67CB1A91469472A0022FDCF /* HorizontalScrollViewControllerAppDelegate.m */,
 				E620598713CF690D00656735 /* MainWindow.xib */,
 				E620597C13CF690C00656735 /* Supporting Files */,
+				E67AD65C1469A80D00F972F6 /* TextnumbersDataSource.h */,
+				E67AD65D1469A80D00F972F6 /* TextnumbersDataSource.m */,
 			);
 			path = HorizontalScrollViewController;
 			sourceTree = "<group>";
@@ -793,6 +799,7 @@
 				E67CB1B81469472A0022FDCF /* HorizontalScrollViewControllerAppDelegate.m in Sources */,
 				E67CB1BC146947970022FDCF /* NumbersDataSource.m in Sources */,
 				E6D94C0314694D1B00A37234 /* PurplePageController.m in Sources */,
+				E67AD65E1469A80D00F972F6 /* TextnumbersDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -881,6 +888,7 @@
 				E67CB1B91469472A0022FDCF /* HorizontalScrollViewControllerAppDelegate.m in Sources */,
 				E67CB1BD146947970022FDCF /* NumbersDataSource.m in Sources */,
 				E6D94C0414694D1B00A37234 /* PurplePageController.m in Sources */,
+				E67AD65F1469A80D00F972F6 /* TextnumbersDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
