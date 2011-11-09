@@ -11,7 +11,10 @@
 #import "OrderedListDataSourceProtocol.h"
 
 @interface OrderedListDataSource : NSObject <OrderedListDataSourceProtocol>
-{}
+{
+    @protected
+      NSMutableArray* elementsArray;
+}
 
 @property (nonatomic, assign) id <OrderedListDataSourceDelegateProtocol> dataSourceDelegate;
 

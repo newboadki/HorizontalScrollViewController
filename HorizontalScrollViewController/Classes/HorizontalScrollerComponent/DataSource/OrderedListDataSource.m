@@ -8,16 +8,10 @@
 
 #import "OrderedListDataSource.h"
 
-@interface OrderedListDataSource()
-@property (nonatomic, retain) NSMutableArray* elementsArray;
-@end
-
-
 
 @implementation OrderedListDataSource
 
 @synthesize dataSourceDelegate;
-@synthesize elementsArray;
 
 
 #pragma mark - Initialisers
