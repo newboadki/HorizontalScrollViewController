@@ -156,4 +156,34 @@ describe(@"pageControllerClass property", ^{
     });
 });
 
+describe(@"loadingPageControllerName", ^{
+    
+    it(@"should return a default name if the property loadingPageControllerClass has not been set", ^{
+        HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
+        controller.loadingPageControllerClass = NULL;
+        
+        STAssertTrue([controller safeLoadingPageControllerClass] == [LoadingScreenViewController class], @"");
+    });
+
+    it(@"should return the value of the property loadingPageControllerClass if it's been set", ^{
+        HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
+        controller.loadingPageControllerClass = [PageController class];
+        
+        STAssertTrue([controller safeLoadingPageControllerClass] == [PageController class], @"");;
+    });
+
+});
+
+
+describe(@"loadView", ^{
+    
+    it(@"should send the message 'safeLoadingPageControllerClass'", ^{
+        HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
+        [[controller should] receive:@selector(safeLoadingPageControllerClass)];
+        [controller loadView];
+    });
+    
+});
+
+
 SPEC_END

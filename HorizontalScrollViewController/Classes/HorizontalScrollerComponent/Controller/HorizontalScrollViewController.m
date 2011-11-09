@@ -53,12 +53,14 @@
 - (void) makeMissingPagesVisibleWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex;
 - (void) addLoadingPageToVisiblePagesAtIndex:(int)index;
 - (void) dequeScrollPageToBeVisibleWithIndex:(int)index;
+- (Class) safeLoadingPageControllerClass;
 @end
 
 @implementation HorizontalScrollViewController
 
 @synthesize dataSource;
 @synthesize pageControllerClass;
+@synthesize loadingPageControllerClass;
 
 #pragma mark -
 #pragma mark View loading and unloading
@@ -69,7 +71,8 @@
     /* Create and configure the scrolling view.                                                    */
 	/***********************************************************************************************/
     // Create the loading controller
-    self->loadingController = [[LoadingScreenViewController alloc] initWithNibName:@"LoadingScreenViewController" bundle:[NSBundle mainBundle]];
+    Class safeLoadingPageControllerClass = [self safeLoadingPageControllerClass];
+    self->loadingController = [[safeLoadingPageControllerClass alloc] initWithNibName:@"LoadingScreenViewController" bundle:[NSBundle mainBundle]];
     
     // Step 1: make the outer paging scroll view
     CGRect pagingScrollViewFrame = [self frameForPagingScrollView];
@@ -265,6 +268,18 @@
     [page displayViewWithElement:element];
 }
 
+
+- (Class) safeLoadingPageControllerClass
+{
+    Class controllerClass = [LoadingScreenViewController class];
+    
+    if(self.loadingPageControllerClass)
+    {
+        controllerClass = self.loadingPageControllerClass;
+    }
+    
+    return controllerClass;
+}
 
 #pragma mark -
 #pragma mark ScrollView delegate methods

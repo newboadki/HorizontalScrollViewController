@@ -65,6 +65,7 @@
 
 @property (retain, nonatomic) OrderedListDataSource* dataSource;
 @property (assign, nonatomic) Class pageControllerClass;
+@property (assign, nonatomic) Class loadingPageControllerClass;
 
 - (void)configurePage:(PageController *)page forIndex:(NSUInteger)index;
 - (BOOL)isDisplayingPageForIndex:(NSUInteger)index;
