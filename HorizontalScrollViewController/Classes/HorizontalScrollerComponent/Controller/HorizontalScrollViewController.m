@@ -493,6 +493,13 @@
 
 
 
+#pragma mark - OrderedListDataSource Delegate Protocol
+
+- (void) countDidChangeWithOffset:(NSInteger)offset{}
+- (void) countDidNotChange{}
+
+
+
 #pragma mark - Memory Management
 
 - (void)dealloc

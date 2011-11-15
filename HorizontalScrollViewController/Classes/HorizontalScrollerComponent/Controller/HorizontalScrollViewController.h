@@ -48,12 +48,13 @@
 #import <UIKit/UIKit.h>
 #import "LoadingScreenViewController.h"
 #import "OrderedListDataSource.h"
+#import "OrderedListDataSourceDelegateProtocol.h"
 
 
 @class ImageScrollView;
 @class PageController;
 
-@interface HorizontalScrollViewController : UIViewController <UIScrollViewDelegate>
+@interface HorizontalScrollViewController : UIViewController <UIScrollViewDelegate, OrderedListDataSourceDelegateProtocol>
 {
     UIScrollView* pagingScrollView;    
     NSMutableSet* recycledPages;
