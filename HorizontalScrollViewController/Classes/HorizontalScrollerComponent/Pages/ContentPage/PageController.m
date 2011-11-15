@@ -58,8 +58,8 @@
 
 #pragma mark - Rotation helpers
 
-- (CGPoint)pointToCenterAfterRotation{}
-- (CGFloat)scaleToRestoreAfterRotation{}
+- (CGPoint)pointToCenterAfterRotation{ return CGPointMake(0.0, 0.0); }
+- (CGFloat)scaleToRestoreAfterRotation{ return 0.0; }
 - (void)restoreCenterPoint:(CGPoint)oldCenter scale:(CGFloat)oldScale{}
 
 

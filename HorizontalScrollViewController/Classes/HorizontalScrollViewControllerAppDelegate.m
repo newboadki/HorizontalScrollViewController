@@ -22,7 +22,7 @@
 {
     // Override point for customization after application launch.
     
-    TextnumbersDataSource* dataSource = [[TextnumbersDataSource alloc] initWithDelegate:nil];
+    TextnumbersDataSource* dataSource = [[TextnumbersDataSource alloc] initWithDelegate:self.viewController];
     self.viewController.dataSource = dataSource;
     self.viewController.pageControllerClass = [PurplePageController class];
     [dataSource release];        
