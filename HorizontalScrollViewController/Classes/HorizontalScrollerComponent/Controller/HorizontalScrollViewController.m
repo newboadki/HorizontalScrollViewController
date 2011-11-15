@@ -1,4 +1,4 @@
-/*
+     /*
  File: PhotoViewController.m
  Abstract: Configures and displays the paging scroll view and handles tiling and page configuration.
  Version: 1.1
@@ -48,12 +48,19 @@
 #import "HorizontalScrollViewController.h"
 #import "PageController.h"
 
+#define LOADING_PREVIOUS_ELEMENTS_PAGE_INDEX 0
+#define LOADING_SUBSEQUENT_ELEMENTS_PAGE_INDEX [dataSource count]+1
+#define FIRST_CONTENT_PAGE_INDEX 1
+#define LAST_CONTENT_PAGE_INDEX [dataSource count]
+
 @interface HorizontalScrollViewController()
 - (void) recycleNoLongerUsedPagesWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex;
 - (void) makeMissingPagesVisibleWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex;
 - (void) addLoadingPageToVisiblePagesAtIndex:(int)index;
 - (void) dequeScrollPageToBeVisibleWithIndex:(int)index;
 - (Class) safeLoadingPageControllerClass;
+- (void) addLoadingPageViewToHierarchyForIndex:(int)index;
+- (void) removeLoadingPageFromView;
 @end
 
 @implementation HorizontalScrollViewController
@@ -61,6 +68,8 @@
 @synthesize dataSource;
 @synthesize pageControllerClass;
 @synthesize loadingPageControllerClass;
+
+
 
 #pragma mark -
 #pragma mark View loading and unloading
@@ -158,33 +167,23 @@
     /**
      */
     for (int index = firstNeededPageIndex; index <= lastNeededPageIndex; index++)
-    {
+    {        
         if (![self isDisplayingPageForIndex:index])
         {
             if(index==0 || index==[dataSource count]+1)
-            {
-                // we need to use the loading screen
-                [self addLoadingPageToVisiblePagesAtIndex:index];
+            {                
+                // This methods gets called during the scrolling process
+                // We need to do the following so the loading pages look like were there already
+                // But we don't want to call view Will appear/disappear many times
+                [self addLoadingPageViewToHierarchyForIndex:index];
             }
             else
             {
-                // we need to deque one of the generic  controllers
+                // we need to deque one of the generic controllers
                 [self dequeScrollPageToBeVisibleWithIndex:index];
             }            
         }
     }    
-}
-
-
-- (void) addLoadingPageToVisiblePagesAtIndex:(int)index
-{
-    /**
-     */
-    [self configurePage:loadingController forIndex:index];
-    [loadingController viewWillAppear:YES];
-    [pagingScrollView addSubview:loadingController.view];
-    [loadingController viewDidAppear:YES];
-    [visiblePages addObject:loadingController];
 }
 
 
@@ -249,6 +248,7 @@
 }
 
 
+
 - (void)configurePage:(PageController *)page forIndex:(NSUInteger)index
 {
     /***********************************************************************************************/
@@ -289,6 +289,80 @@
     [self tilePages];
 }
 
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    int currentPageIndex = (int) floor(self->pagingScrollView.contentOffset.x / 320.0);
+    BOOL loadingPageWillAppear = NO;
+    BOOL loadingPageWillDisppear = NO;
+    
+    if (currentPageIndex == LOADING_PREVIOUS_ELEMENTS_PAGE_INDEX)
+    {
+        loadingPageWillAppear = YES;        
+    }
+    else if(currentPageIndex == LOADING_SUBSEQUENT_ELEMENTS_PAGE_INDEX)
+    {
+        loadingPageWillAppear = YES;
+    }
+    else if (currentPageIndex == FIRST_CONTENT_PAGE_INDEX)
+    {
+        loadingPageWillDisppear = YES;
+    }
+    else if (currentPageIndex == LAST_CONTENT_PAGE_INDEX)
+    {
+        loadingPageWillDisppear = YES;
+    }
+    
+    if (loadingPageWillAppear)
+    {
+        // TODO: Rename to addLoadingPageToViewAtIndex
+        [self addLoadingPageToVisiblePagesAtIndex:currentPageIndex];
+    }
+    
+    if (loadingPageWillDisppear)
+    {
+        [self removeLoadingPageFromView];
+    }    
+}
+
+
+
+#pragma mark - LoadingPage Methods
+
+- (void) addLoadingPageViewToHierarchyForIndex:(int)index
+{
+    /***********************************************************************************************
+     This is different from addLoadingPageToVisiblePagesAtIndex: because of the way the scrolling
+     algorithm works. It will get called many times during the scrolling and we don't want to call
+     the viewWill appear methods many times.
+     ***********************************************************************************************/
+    [self configurePage:loadingController forIndex:index];
+    [pagingScrollView addSubview:loadingController.view];
+}
+
+
+- (void) addLoadingPageToVisiblePagesAtIndex:(int)index
+{
+    /***********************************************************************************************
+     It should only be called once during the scrolling process to add the loading page
+     We treat the loading Pages differtly. we don't add them to the visible ones
+     **********************************************************************************************/
+    [self configurePage:loadingController forIndex:index];
+    [loadingController viewWillAppear:YES];
+    [pagingScrollView addSubview:loadingController.view];
+    [loadingController viewDidAppear:YES];
+}
+
+
+- (void) removeLoadingPageFromView
+{
+    /***********************************************************************************************
+     It should only be called once during the scrolling process to remove the loading page 
+     ***********************************************************************************************/
+    [self->loadingController viewWillDisappear:YES];
+    [self->loadingController.view removeFromSuperview];
+    [self->loadingController viewDidDisappear:YES];    
+}
 
 
 
@@ -352,7 +426,7 @@
 
 #pragma mark -
 #pragma mark Frame calculations
-#define PADDING  0 // THE PADDING IS CAUSING THE FUCK-UP!!!!!
+#define PADDING 0
 
 - (CGRect)frameForPagingScrollView
 {
