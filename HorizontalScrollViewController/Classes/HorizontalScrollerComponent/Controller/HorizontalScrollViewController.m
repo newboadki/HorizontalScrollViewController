@@ -145,6 +145,9 @@
 
 - (void) recycleNoLongerUsedPagesWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex 
 {
+    /***********************************************************************************************/
+    /* recycle pages that are not visible. Does not recycle loading pages (it's just one)          */
+	/***********************************************************************************************/
     for (PageController* page in visiblePages)
     {        
         if (page.index < firstNeededPageIndex || page.index > lastNeededPageIndex)
@@ -164,8 +167,9 @@
 
 - (void) makeMissingPagesVisibleWithfirstNeededPage:(int)firstNeededPageIndex lastNeededPage:(int)lastNeededPageIndex 
 {
-    /**
-     */
+    /***********************************************************************************************/
+    /* Show pages for the given indexes.                                                           */
+	/***********************************************************************************************/
     for (int index = firstNeededPageIndex; index <= lastNeededPageIndex; index++)
     {        
         if (![self isDisplayingPageForIndex:index])
@@ -189,8 +193,9 @@
 
 - (void) dequeScrollPageToBeVisibleWithIndex:(int)index
 {
-    /**
-     */
+    /***********************************************************************************************/
+    /* Dequeue a page controller and present its view calling the view life-cycle methods.         */
+	/***********************************************************************************************/
     PageController* page = [self dequeueRecycledPage];
     if (page == nil)
     {
@@ -269,17 +274,6 @@
 }
 
 
-- (Class) safeLoadingPageControllerClass
-{
-    Class controllerClass = [LoadingScreenViewController class];
-    
-    if(self.loadingPageControllerClass)
-    {
-        controllerClass = self.loadingPageControllerClass;
-    }
-    
-    return controllerClass;
-}
 
 #pragma mark -
 #pragma mark ScrollView delegate methods
@@ -292,6 +286,11 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+    /***********************************************************************************************/
+    /* Load or remove the loading page, calling its view life-cycle methods.                       */
+    /* There are certain tasks we need to take care of and can't be done in other methods as most  */
+    /* methods in this class are called many times as part of the tiling process.                  */
+	/***********************************************************************************************/
     int currentPageIndex = (int) floor(self->pagingScrollView.contentOffset.x / 320.0);
     BOOL loadingPageWillAppear = NO;
     BOOL loadingPageWillDisppear = NO;
@@ -362,6 +361,23 @@
     [self->loadingController viewWillDisappear:YES];
     [self->loadingController.view removeFromSuperview];
     [self->loadingController viewDidDisappear:YES];    
+}
+
+
+
+#pragma mark - 
+#pragma mark Helper methods
+
+- (Class) safeLoadingPageControllerClass
+{
+    Class controllerClass = [LoadingScreenViewController class];
+    
+    if(self.loadingPageControllerClass)
+    {
+        controllerClass = self.loadingPageControllerClass;
+    }
+    
+    return controllerClass;
 }
 
 
