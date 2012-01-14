@@ -19,15 +19,19 @@
     /***********************************************************************************************/
     if ((self = [super initWithDelegate:theDelegate]))
     {
-        [self->elementsArray addObject:@"ZERO"];
-        [self->elementsArray addObject:@"ONE"];
-        [self->elementsArray addObject:@"TWO"];
-        [self->elementsArray addObject:@"THREE"];
-        [self->elementsArray addObject:@"FOUR"];
+        [self->elementsArray addObject:@"number 0"];
+        [self->elementsArray addObject:@"number 1"];
+        [self->elementsArray addObject:@"number 2"];
+        [self->elementsArray addObject:@"number 3"];
+        [self->elementsArray addObject:@"number 4"];
+        self->firstIndex = 0;
+        self->lastIndex = 4;
     }
     
     return self;
 }
+
+
 
 
 #pragma mark - Ordered List Data Source Methods
@@ -37,14 +41,34 @@
     /***********************************************************************************************/
     /* In an ordered list there's a first element and a last one. Before means closer to the first.*/
     /***********************************************************************************************/    
+    //NSNumber* oldIndexNumber = (NSNumber*)elementId;
+    
+    for (int i=1; i<=5; i++)
+    {
+        (self->firstIndex)--;
+        [self->elementsArray insertObject:[NSString stringWithFormat:@"number %d", self->firstIndex] atIndex:0];
+    }
+    
+    sleep(2);
+    [dataSourceDelegate fetchedElementsAtTheBeginingWithOffset:5];
 }
 
 
 - (void) fetchElementsBatch:(int)amount afterAndIncluding:(id)elementId
 {
     /***********************************************************************************************/
-    /* In an ordered list there's a first element and a last one. Before means closer to the first.*/    
+    /* In an ordered list there's a first element and a last one. after means closer to the last.*/    
     /***********************************************************************************************/    
+    //NSNumber* oldIndexNumber = (NSNumber*)elementId;
+    
+    for (int i=1; i<=5; i++)
+    {
+        (self->lastIndex)++;    
+        [self->elementsArray addObject:[NSString stringWithFormat:@"number %d", self->lastIndex]];
+    }
+    
+    sleep(2);
+    [dataSourceDelegate fetchedElementsAtTheEndWithOffset:5];
 }
 
 
@@ -52,7 +76,7 @@
 {
     /***********************************************************************************************/
     /* In an ordered list there's a first element and a last one. Before means closer to the first.*/
-    /* The latest element therefore will be inserted at the beginning of the array.                */
+    /* The latest element therefore will be inserted at the end of the array.                      */
     /***********************************************************************************************/    
 }
 

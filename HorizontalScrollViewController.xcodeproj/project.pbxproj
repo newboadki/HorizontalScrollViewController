@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00B7566B14BFAC29006CC270 /* SamplePage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B7566A14BFAC29006CC270 /* SamplePage.xib */; };
+		00B7566C14BFAC29006CC270 /* SamplePage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00B7566A14BFAC29006CC270 /* SamplePage.xib */; };
 		E620597613CF690C00656735 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E620597513CF690C00656735 /* UIKit.framework */; };
 		E620597813CF690C00656735 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E620597713CF690C00656735 /* Foundation.framework */; };
 		E620597A13CF690C00656735 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E620597913CF690C00656735 /* CoreGraphics.framework */; };
@@ -124,6 +126,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00B7566A14BFAC29006CC270 /* SamplePage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SamplePage.xib; sourceTree = "<group>"; };
 		E620597113CF690C00656735 /* HorizontalScrollViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HorizontalScrollViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E620597513CF690C00656735 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E620597713CF690C00656735 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -396,6 +399,7 @@
 				E620597C13CF690C00656735 /* Supporting Files */,
 				E67AD65C1469A80D00F972F6 /* TextnumbersDataSource.h */,
 				E67AD65D1469A80D00F972F6 /* TextnumbersDataSource.m */,
+				00B7566A14BFAC29006CC270 /* SamplePage.xib */,
 			);
 			path = HorizontalScrollViewController;
 			sourceTree = "<group>";
@@ -755,6 +759,7 @@
 				E620598013CF690C00656735 /* InfoPlist.strings in Resources */,
 				E620598913CF690D00656735 /* MainWindow.xib in Resources */,
 				E67CB1B61469472A0022FDCF /* LoadingScreenViewController.xib in Resources */,
+				00B7566B14BFAC29006CC270 /* SamplePage.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,6 +770,7 @@
 				E62059A013CF690D00656735 /* InfoPlist.strings in Resources */,
 				E62059A313CF690D00656735 /* HorizontalScrollViewControllerTests.h in Resources */,
 				E67CB1B71469472A0022FDCF /* LoadingScreenViewController.xib in Resources */,
+				00B7566C14BFAC29006CC270 /* SamplePage.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

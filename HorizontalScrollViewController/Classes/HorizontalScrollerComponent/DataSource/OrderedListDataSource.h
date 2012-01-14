@@ -14,6 +14,7 @@
 {
     @protected
       NSMutableArray* elementsArray;
+      id <OrderedListDataSourceDelegateProtocol> dataSourceDelegate;
 }
 
 @property (nonatomic, assign) id <OrderedListDataSourceDelegateProtocol> dataSourceDelegate;

@@ -13,8 +13,8 @@
 {    
 }
 
-@property   NSUInteger index;
-@property (retain, nonatomic) UIView* view;
+@property (assign, nonatomic)          NSUInteger index;
+@property (retain, nonatomic) IBOutlet UIView*    view;
 
 - (CGPoint)pointToCenterAfterRotation;
 - (CGFloat)scaleToRestoreAfterRotation;

@@ -44,7 +44,10 @@
      * There's some Apple magic going on here. loadNibNamed:owner: loads the nib file and then 
      * assigns it to the view!!! That's why we don't set it as in 'init'. I guess that 
      * initWithNibName:bundle does that for UIViewControllers as view controllers have a view. 
-     * We are mimicking viewControllers here so it's not that bad.
+     
+     * Stupid me, of course it links it to the view. loadNibFile, just unarchives the content
+     * of the nib file and stablishes the connections with the passed owner. I guess I'm jsut a bit
+     * puzzled with the fact that there was no IBOutlet. 
      ***********************************************************************************************/
     if ((self = [super init]))
     {        

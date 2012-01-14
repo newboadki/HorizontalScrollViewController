@@ -10,5 +10,10 @@
 #import "OrderedListDataSource.h"
 
 @interface TextnumbersDataSource : OrderedListDataSource
+{
+    int firstIndex;
+    int lastIndex;
+}
+
 
 @end

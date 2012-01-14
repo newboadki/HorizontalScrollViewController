@@ -51,7 +51,6 @@
 #import "OrderedListDataSourceDelegateProtocol.h"
 
 
-@class ImageScrollView;
 @class PageController;
 
 @interface HorizontalScrollViewController : UIViewController <UIScrollViewDelegate, OrderedListDataSourceDelegateProtocol>

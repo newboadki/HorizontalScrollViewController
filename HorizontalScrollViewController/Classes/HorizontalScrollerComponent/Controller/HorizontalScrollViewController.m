@@ -105,6 +105,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
     [pagingScrollView release];
     pagingScrollView = nil;
     [recycledPages release];
@@ -199,7 +200,7 @@
     PageController* page = [self dequeueRecycledPage];
     if (page == nil)
     {
-        page = [[[self.pageControllerClass alloc] init] autorelease];
+        page = [[[self.pageControllerClass alloc] initWithNibName:@"SamplePage" bundle:[NSBundle mainBundle]] autorelease];
     }
     
     if (page)
@@ -268,9 +269,8 @@
     if (index>0 && index<[dataSource count]+1)
     {
         element = [dataSource elementAtIndex:page.index-1];
+        [page displayViewWithElement:element];
     }
-    
-    [page displayViewWithElement:element];
 }
 
 
@@ -291,36 +291,50 @@
     /* There are certain tasks we need to take care of and can't be done in other methods as most  */
     /* methods in this class are called many times as part of the tiling process.                  */
 	/***********************************************************************************************/
-    int currentPageIndex = (int) floor(self->pagingScrollView.contentOffset.x / 320.0);
+    int currentPageIndex = (int) floor(self->pagingScrollView.contentOffset.x / 320.0); // 320.0 harcoded and can change if the orientation is different
     BOOL loadingPageWillAppear = NO;
-    BOOL loadingPageWillDisppear = NO;
+    BOOL isLoadingPageTheFirstOne = NO;
     
     if (currentPageIndex == LOADING_PREVIOUS_ELEMENTS_PAGE_INDEX)
     {
-        loadingPageWillAppear = YES;        
+        NSLog(@"1");
+        loadingPageWillAppear = YES;   
+        isLoadingPageTheFirstOne = YES;
     }
     else if(currentPageIndex == LOADING_SUBSEQUENT_ELEMENTS_PAGE_INDEX)
     {
+        NSLog(@"2");
         loadingPageWillAppear = YES;
+        isLoadingPageTheFirstOne = NO;
     }
     else if (currentPageIndex == FIRST_CONTENT_PAGE_INDEX)
     {
-        loadingPageWillDisppear = YES;
+        NSLog(@"3");
+        loadingPageWillAppear = NO;
     }
     else if (currentPageIndex == LAST_CONTENT_PAGE_INDEX)
     {
-        loadingPageWillDisppear = YES;
+        NSLog(@"4");
+        loadingPageWillAppear = NO;
     }
     
     if (loadingPageWillAppear)
-    {
-        // TODO: Rename to addLoadingPageToViewAtIndex
-        [self addLoadingPageToVisiblePagesAtIndex:currentPageIndex];
+    {        
+        [self addLoadingPageToVisiblePagesAtIndex:currentPageIndex]; // TODO: Rename to addLoadingPageToViewAtIndex
+        if(isLoadingPageTheFirstOne)
+        {
+            [dataSource fetchElementsBatch:5 beforeAndIncluding:[NSNumber numberWithInt:0]];      // get new elements        
+        }
+        else
+        {
+            [dataSource fetchElementsBatch:5 afterAndIncluding:[NSNumber numberWithInt:[dataSource count]]];
+        }
+        
     }
-    
-    if (loadingPageWillDisppear)
+    else
     {
-        [self removeLoadingPageFromView];
+        NSLog(@"MEEeeeec");
+        //[self removeLoadingPageFromView];
     }    
 }
 
@@ -358,15 +372,17 @@
     /***********************************************************************************************
      It should only be called once during the scrolling process to remove the loading page 
      ***********************************************************************************************/
-    [self->loadingController viewWillDisappear:YES];
-    [self->loadingController.view removeFromSuperview];
-    [self->loadingController viewDidDisappear:YES];    
+    if ([self->loadingController.view superview])
+    {
+        [self->loadingController viewWillDisappear:YES];
+        [self->loadingController.view removeFromSuperview];
+        [self->loadingController viewDidDisappear:YES];    
+    }
 }
 
 
 
-#pragma mark - 
-#pragma mark Helper methods
+#pragma mark - Helper methods
 
 - (Class) safeLoadingPageControllerClass
 {
@@ -387,7 +403,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation 
 {
-    return YES;
+    return (toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 
@@ -487,7 +503,6 @@
     CGRect bounds = pagingScrollView.bounds;
     int numberOfPages = [dataSource count]+2; // The two blank pages at the beginning and end of the collection
     CGSize contentSize = CGSizeMake(bounds.size.width * numberOfPages, bounds.size.height);
-    
     return contentSize;
 }
 
@@ -495,8 +510,27 @@
 
 #pragma mark - OrderedListDataSource Delegate Protocol
 
-- (void) countDidChangeWithOffset:(NSInteger)offset{}
-- (void) countDidNotChange{}
+- (void) countDidNotChange
+{
+
+}
+
+
+- (void) fetchedElementsAtTheBeginingWithOffset:(NSInteger)offset
+{
+    pagingScrollView.contentSize = [self contentSizeForPagingScrollView]; // create space for the new pages
+    pagingScrollView.contentOffset = CGPointMake(320.0*(offset), 0); // Modify the offset so we see the first page of the newly loaded
+                                                                     // Again harcoded page width, what about orientation changes & other devices
+}
+
+
+- (void) fetchedElementsAtTheEndWithOffset:(NSInteger)offset
+{
+    pagingScrollView.contentSize = [self contentSizeForPagingScrollView]; // create space for the new pages
+    pagingScrollView.contentOffset = CGPointMake(320.0*(([dataSource count] + 1) - offset), 0); // Modify the offset so we see the first page of the newly loaded
+                                                                                                // +1, because of the first (left-most) loading page
+                                                                                                // Again harcoded page width, what about orientation changes & other devices
+}
 
 
 

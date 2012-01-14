@@ -8,36 +8,10 @@
 
 #import "PurplePageController.h"
 
-@interface PurplePageController()
-@property (retain, nonatomic) UILabel* textLabel;
-@end
 
 @implementation PurplePageController
 
 @synthesize textLabel;
-
-
-
-#pragma mark - Initializator Methods
-
-- (id) init
-{
-    /**********************************************************************************************
-     * 
-     ***********************************************************************************************/
-    self = [super init];
-
-    if(self)
-    {
-        UILabel* l = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 100, 50)];
-        [l setBackgroundColor:[UIColor clearColor]];
-        [self setTextLabel:l];
-        [l release];        
-        [self.view addSubview:self.textLabel];
-    }
-    
-    return self;
-}
 
 
 
@@ -54,7 +28,6 @@
 - (void) displayViewWithElement:(id)element
 {
     textLabel.text = [element description];
-    [self.view setBackgroundColor:[UIColor purpleColor]];        
 }
 
 

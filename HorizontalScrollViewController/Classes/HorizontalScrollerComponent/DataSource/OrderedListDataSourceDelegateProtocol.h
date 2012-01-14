@@ -10,6 +10,7 @@
 
 
 @protocol OrderedListDataSourceDelegateProtocol <NSObject>
-- (void) countDidChangeWithOffset:(NSInteger)offset;
+- (void) fetchedElementsAtTheBeginingWithOffset:(NSInteger)offset;
+- (void) fetchedElementsAtTheEndWithOffset:(NSInteger)offset;
 - (void) countDidNotChange;
 @end
