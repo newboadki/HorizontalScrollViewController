@@ -314,7 +314,8 @@
     /* There are certain tasks we need to take care of and can't be done in other methods as most  */
     /* methods in this class are called many times as part of the tiling process.                  */
 	/***********************************************************************************************/
-    int currentPageIndex = (int) floor(self->pagingScrollView.contentOffset.x / 320.0); // 320.0 harcoded and can change if the orientation is different
+    float pageWidth = self->pagingScrollView.bounds.size.width;
+    int currentPageIndex = (int) floor(self->pagingScrollView.contentOffset.x / pageWidth);
     BOOL loadingPageWillAppear = NO;
     BOOL isLoadingPageTheFirstOne = NO;
     
