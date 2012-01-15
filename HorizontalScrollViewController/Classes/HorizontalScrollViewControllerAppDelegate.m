@@ -25,6 +25,8 @@
     TextnumbersDataSource* dataSource = [[TextnumbersDataSource alloc] initWithDelegate:self.viewController];
     self.viewController.dataSource = dataSource;
     self.viewController.pageControllerClass = [PurplePageController class];
+    self.viewController.loadingPageNibName = @"LoadingScreenViewController";
+    self.viewController.contentPageNibName = @"SamplePage";
     [dataSource release];        
     
     self.window.rootViewController = (UIViewController*)self.viewController;

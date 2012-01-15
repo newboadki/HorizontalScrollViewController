@@ -55,17 +55,19 @@
 
 @interface HorizontalScrollViewController : UIViewController <UIScrollViewDelegate, OrderedListDataSourceDelegateProtocol>
 {
-    UIScrollView* pagingScrollView;    
-    NSMutableSet* recycledPages;
-    NSMutableSet* visiblePages;
+    UIScrollView*                pagingScrollView;    
+    NSMutableSet*                recycledPages;
+    NSMutableSet*                visiblePages;
     LoadingScreenViewController* loadingController;    
-    int           firstVisiblePageIndexBeforeRotation; // stored before we start rotation so we adjust our content offset during rotation
-    CGFloat       percentScrolledIntoFirstVisiblePage; // stored before we start rotation so we adjust our content offset during rotation
+    int                          firstVisiblePageIndexBeforeRotation; // stored before we start rotation so we adjust our content offset during rotation
+    CGFloat                      percentScrolledIntoFirstVisiblePage; // stored before we start rotation so we adjust our content offset during rotation
 }
 
 @property (retain, nonatomic) OrderedListDataSource* dataSource;
 @property (assign, nonatomic) Class pageControllerClass;
 @property (assign, nonatomic) Class loadingPageControllerClass;
+@property (copy, nonatomic)   NSString* loadingPageNibName;
+@property (copy, nonatomic)   NSString* contentPageNibName;
 
 - (void)configurePage:(PageController *)page forIndex:(NSUInteger)index;
 - (BOOL)isDisplayingPageForIndex:(NSUInteger)index;

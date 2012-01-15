@@ -68,6 +68,8 @@
 @synthesize dataSource;
 @synthesize pageControllerClass;
 @synthesize loadingPageControllerClass;
+@synthesize loadingPageNibName;
+@synthesize contentPageNibName;
 
 
 
@@ -79,9 +81,14 @@
     /***********************************************************************************************/
     /* Create and configure the scrolling view.                                                    */
 	/***********************************************************************************************/
+    if(!self.loadingPageNibName)
+    {
+        @throw @"The property loadingPageNibName was not assigned";
+    }
+
     // Create the loading controller
     Class safeLoadingPageControllerClass = [self safeLoadingPageControllerClass];
-    self->loadingController = [[safeLoadingPageControllerClass alloc] initWithNibName:@"LoadingScreenViewController" bundle:[NSBundle mainBundle]];
+    self->loadingController = [[safeLoadingPageControllerClass alloc] initWithNibName:self.loadingPageNibName bundle:[NSBundle mainBundle]];
     
     // Step 1: make the outer paging scroll view
     CGRect pagingScrollViewFrame = [self frameForPagingScrollView];
@@ -133,13 +140,13 @@
     firstNeededPageIndex = MAX(firstNeededPageIndex, 0);
     lastNeededPageIndex  = MIN(lastNeededPageIndex, [dataSource count]+1); // This is MIN(lastNeededPageIndex, numberOfPages-1) because we have two loading pages => count+2-1 => count+1
     
-    // Recycle no-longer-visible pages
+    // Configure and add to view the new pages dequed from recycled if needed
     [self makeMissingPagesVisibleWithfirstNeededPage:firstNeededPageIndex lastNeededPage:lastNeededPageIndex];
     
     // Remove recycled from visible
     [visiblePages minusSet:recycledPages];
     
-    // add missing pages
+    // Remove pages from the view and add them to recycled
     [self recycleNoLongerUsedPagesWithfirstNeededPage:firstNeededPageIndex lastNeededPage:lastNeededPageIndex];
 }
 
@@ -153,7 +160,10 @@
     {        
         if (page.index < firstNeededPageIndex || page.index > lastNeededPageIndex)
         {
-            if (page.index>0 && page.index<[dataSource count]+1)
+            int firstLoadingPageIndex = 0;
+            int lastLoadingPageIndex = [dataSource count] + 1;
+            
+            if ((page.index > firstLoadingPageIndex) && (page.index < lastLoadingPageIndex))
             {
                 // because we don't want to recycle the loading pages
                 [recycledPages addObject:page];
@@ -175,12 +185,15 @@
     {        
         if (![self isDisplayingPageForIndex:index])
         {
-            if(index==0 || index==[dataSource count]+1)
+            int firstPageIndex = 0;
+            int lastPageIndex = [dataSource count] + 1; // There are 2 loadging pages. one at 0, then N content pages and finally another loading page at N+1
+            
+            if((index == firstPageIndex) || (index == lastPageIndex))
             {                
                 // This methods gets called during the scrolling process
                 // We need to do the following so the loading pages look like were there already
                 // But we don't want to call view Will appear/disappear many times
-                [self addLoadingPageViewToHierarchyForIndex:index];
+                [self addLoadingPageViewToHierarchyForIndex:index]; // We don't dequeue the loading page, there's just one that we reuse at the beginning and end
             }
             else
             {
@@ -197,10 +210,16 @@
     /***********************************************************************************************/
     /* Dequeue a page controller and present its view calling the view life-cycle methods.         */
 	/***********************************************************************************************/
+    if(!self.contentPageNibName)
+    {
+        @throw @"The property contentPageNibName was not assigned.";
+    }
+    
     PageController* page = [self dequeueRecycledPage];
+    
     if (page == nil)
     {
-        page = [[[self.pageControllerClass alloc] initWithNibName:@"SamplePage" bundle:[NSBundle mainBundle]] autorelease];
+        page = [[[self.pageControllerClass alloc] initWithNibName:self.contentPageNibName bundle:[NSBundle mainBundle]] autorelease];
     }
     
     if (page)
@@ -266,9 +285,13 @@
     page.view.frame = [self frameForPageAtIndex:index];
     id element = nil;
     
-    if (index>0 && index<[dataSource count]+1)
+    int firstLoadingPageIndex = 0;
+    int lastLoadingLoadingPageIndex = [dataSource count] + 1; // There are 2 loadging pages. one at 0, then N content pages and finally another loading page at N+1
+    
+    if ((index > firstLoadingPageIndex) && (index < lastLoadingLoadingPageIndex))
     {
-        element = [dataSource elementAtIndex:page.index-1];
+        int dataSourceTranslatedIndex = (page.index) - 1; // page.index includes the loading pages. So in the data source we need to correct that
+        element = [dataSource elementAtIndex:dataSourceTranslatedIndex];
         [page displayViewWithElement:element];
     }
 }
@@ -297,24 +320,20 @@
     
     if (currentPageIndex == LOADING_PREVIOUS_ELEMENTS_PAGE_INDEX)
     {
-        NSLog(@"1");
         loadingPageWillAppear = YES;   
         isLoadingPageTheFirstOne = YES;
     }
     else if(currentPageIndex == LOADING_SUBSEQUENT_ELEMENTS_PAGE_INDEX)
     {
-        NSLog(@"2");
         loadingPageWillAppear = YES;
         isLoadingPageTheFirstOne = NO;
     }
     else if (currentPageIndex == FIRST_CONTENT_PAGE_INDEX)
     {
-        NSLog(@"3");
         loadingPageWillAppear = NO;
     }
     else if (currentPageIndex == LAST_CONTENT_PAGE_INDEX)
     {
-        NSLog(@"4");
         loadingPageWillAppear = NO;
     }
     
@@ -333,7 +352,6 @@
     }
     else
     {
-        NSLog(@"MEEeeeec");
         //[self removeLoadingPageFromView];
     }    
 }
@@ -518,18 +536,24 @@
 
 - (void) fetchedElementsAtTheBeginingWithOffset:(NSInteger)offset
 {
+    float pageWith = pagingScrollView.bounds.size.width; // This keeps into account the orientation, since the bounds have transformations applied to them.
     pagingScrollView.contentSize = [self contentSizeForPagingScrollView]; // create space for the new pages
-    pagingScrollView.contentOffset = CGPointMake(320.0*(offset), 0); // Modify the offset so we see the first page of the newly loaded
+    pagingScrollView.contentOffset = CGPointMake(pageWith * (offset), 0); // Modify the offset so we see the first page of the newly loaded
                                                                      // Again harcoded page width, what about orientation changes & other devices
+     
+    [self tilePages]; // we've enlarged the contentSize and 'moved' the offset, but we still need to calculate what's on the screen now.
 }
 
 
 - (void) fetchedElementsAtTheEndWithOffset:(NSInteger)offset
 {
+    float pageWith = pagingScrollView.bounds.size.width; // This keeps into account the orientation, since the bounds have transformations applied to them.
     pagingScrollView.contentSize = [self contentSizeForPagingScrollView]; // create space for the new pages
-    pagingScrollView.contentOffset = CGPointMake(320.0*(([dataSource count] + 1) - offset), 0); // Modify the offset so we see the first page of the newly loaded
+    pagingScrollView.contentOffset = CGPointMake(pageWith * (([dataSource count] + 1) - offset), 0); // Modify the offset so we see the first page of the newly loaded
                                                                                                 // +1, because of the first (left-most) loading page
                                                                                                 // Again harcoded page width, what about orientation changes & other devices
+     
+    [self tilePages]; // we've enlarged the contentSize and 'moved' the offset, but we still need to calculate what's on the screen now.
 }
 
 
@@ -543,6 +567,8 @@
      ***********************************************************************************************/
     [pagingScrollView release];
     [self setDataSource:nil];
+    [self setLoadingPageNibName:nil];
+    [self setContentPageNibName:nil];
     
     [super dealloc];
 }
