@@ -35,6 +35,9 @@
     OrderedListDataSource* dataSourceMock = [KWMock mockForClass:[OrderedListDataSource class]];
     [dataSourceMock stub:@selector(count) andReturn:theValue(4)];
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
+    [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+    [controller setContentPageNibName:@"SamplePage"];
+
     controller.dataSource = dataSourceMock;
     [controller loadView];
     
@@ -81,6 +84,9 @@
     NSMutableSet* recycledPages = [[NSMutableSet alloc] init];
     [recycledPages addObject:pageMock];
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
+    [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+    [controller setContentPageNibName:@"SamplePage"];
+
     [controller setValue:recycledPages forKey:@"recycledPages"];
     PageController* dequeuedPage = [controller dequeueRecycledPage];    
     STAssertNotNil(dequeuedPage, @"dequeueRecycledPage should return an object if it contains one");
@@ -105,7 +111,9 @@
     
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
     [controller setValue:visiblePages forKey:@"visiblePages"];
-    
+    [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+    [controller setContentPageNibName:@"SamplePage"];
+
     STAssertTrue([controller isDisplayingPageForIndex:0] == YES, @"isDisplayingPAgeFor index should return true for a visible page");
     STAssertTrue([controller isDisplayingPageForIndex:1] == YES, @"isDisplayingPAgeFor index should return true for a visible page");
     STAssertTrue([controller isDisplayingPageForIndex:2] == NO, @"isDisplayingPAgeFor index should return false for a visible page");
@@ -137,6 +145,9 @@
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
     [controller setValue:pagingScrollView forKey:@"pagingScrollView"];
     [controller configurePage:page forIndex:1];
+    [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+    [controller setContentPageNibName:@"SamplePage"];
+
     
     CGRect frame = page.view.frame;
     
@@ -151,30 +162,6 @@
 }
 
 
-- (void) testConfigurePageDisplaysPage
-{
-    // All we want to test in this testcase is that the method gets called with the right index
-    // Unfortunatelly, the index seems to be 0 even if the mock expectations are set to a different value.
-    
-    // Because of this issue too, we can't really test this method, as we need to set the index to different values to test 
-    // which method gets called
-    id page = [OCMockObject niceMockForClass:[PageController class]];
-    [[page expect] displayViewWithElement:nil];// when the index is 0 or [dataSource count]+1 the method needs to be called with nil
-    int index = 0;
-    NSValue* indexValue = [NSValue valueWithBytes:&index objCType:@encode(int)];
-    [[[page stub] index] andReturnsValue:indexValue];
-    UIScrollView* pagingScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
-    NSArray* dataSource = [NSArray arrayWithObjects:@"A", @"B", @"C", nil];
-    
-    HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
-    [controller setValue:pagingScrollView forKey:@"pagingScrollView"];
-    [controller setValue:dataSource forKey:@"dataSource"];
-    [controller configurePage:page forIndex:0];
-    
-    [page verify];
-    
-    [controller release];
-}
 
 
 - (void) testWillRotateToInterfaceOrientation
@@ -185,6 +172,9 @@
     
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
     [controller setValue:pagingScrollView forKey:@"pagingScrollView"];
+    [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+    [controller setContentPageNibName:@"SamplePage"];
+
     
     [controller willRotateToInterfaceOrientation:UIInterfaceOrientationPortrait duration:1.0];
     float firstVisiblePage = [(NSNumber*)[controller valueForKey:@"firstVisiblePageIndexBeforeRotation"] floatValue];
@@ -214,7 +204,9 @@
 {
     // assuming PADDING is 0
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
-    
+    [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+    [controller setContentPageNibName:@"SamplePage"];
+
     Swizzle([UIScreen class], @selector(mainScreen), [HorizontalScrollViewControllerTests class], @selector(mainScreenStub));
     CGRect frame = [controller frameForPagingScrollView];
     STAssertTrue(frame.origin.x == 0, @"The origin x should be 0. Found %f", frame.origin.x);
@@ -229,6 +221,9 @@
     UIScrollView* pagingScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 480.0)];
     
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
+    [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+    [controller setContentPageNibName:@"SamplePage"];
+
     [controller setValue:pagingScrollView forKey:@"pagingScrollView"];
     
     CGRect frame = [controller frameForPageAtIndex:3];
@@ -249,6 +244,8 @@
     NSArray* dataSource = [NSArray arrayWithObjects:@"A", @"B", @"C", @"D", nil];    
     
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
+    [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+    [controller setContentPageNibName:@"SamplePage"];
     [controller setValue:pagingScrollView forKey:@"pagingScrollView"];
     [controller setValue:dataSource forKey:@"dataSource"];
     
@@ -279,6 +276,8 @@
     [visiblePages addObject:page];
     HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
     
+    [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+    [controller setContentPageNibName:@"SamplePage"];
     [controller setValue:pagingScrollView forKey:@"pagingScrollView"];
     [controller setValue:dataSource forKey:@"dataSource"];
     [controller setValue:visiblePages forKey:@"visiblePages"];

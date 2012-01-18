@@ -318,7 +318,7 @@
     int currentPageIndex = (int) floor(self->pagingScrollView.contentOffset.x / pageWidth);
     BOOL loadingPageWillAppear = NO;
     BOOL isLoadingPageTheFirstOne = NO;
-    
+
     if (currentPageIndex == LOADING_PREVIOUS_ELEMENTS_PAGE_INDEX)
     {
         loadingPageWillAppear = YES;   
@@ -341,6 +341,7 @@
     if (loadingPageWillAppear)
     {        
         [self addLoadingPageToVisiblePagesAtIndex:currentPageIndex]; // TODO: Rename to addLoadingPageToViewAtIndex
+        
         if(isLoadingPageTheFirstOne)
         {
             [dataSource fetchElementsBatch:5 beforeAndIncluding:[NSNumber numberWithInt:0]];      // get new elements        
@@ -348,13 +349,8 @@
         else
         {
             [dataSource fetchElementsBatch:5 afterAndIncluding:[NSNumber numberWithInt:[dataSource count]]];
-        }
-        
+        }        
     }
-    else
-    {
-        //[self removeLoadingPageFromView];
-    }    
 }
 
 

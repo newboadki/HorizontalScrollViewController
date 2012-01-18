@@ -19,11 +19,11 @@
     /***********************************************************************************************/
     if ((self = [super initWithDelegate:theDelegate]))
     {
-        [self->elementsArray addObject:@"number 0"];
-        [self->elementsArray addObject:@"number 1"];
-        [self->elementsArray addObject:@"number 2"];
-        [self->elementsArray addObject:@"number 3"];
-        [self->elementsArray addObject:@"number 4"];
+        [self->elementsArray addObject:@"0"];
+        [self->elementsArray addObject:@"1"];
+        [self->elementsArray addObject:@"2"];
+        [self->elementsArray addObject:@"3"];
+        [self->elementsArray addObject:@"4"];
         self->firstIndex = 0;
         self->lastIndex = 4;
     }
@@ -46,7 +46,7 @@
     for (int i=1; i<=5; i++)
     {
         (self->firstIndex)--;
-        [self->elementsArray insertObject:[NSString stringWithFormat:@"number %d", self->firstIndex] atIndex:0];
+        [self->elementsArray insertObject:[NSString stringWithFormat:@"%d", self->firstIndex] atIndex:0];
     }
     
     sleep(2);
@@ -64,7 +64,7 @@
     for (int i=1; i<=5; i++)
     {
         (self->lastIndex)++;    
-        [self->elementsArray addObject:[NSString stringWithFormat:@"number %d", self->lastIndex]];
+        [self->elementsArray addObject:[NSString stringWithFormat:@"%d", self->lastIndex]];
     }
     
     sleep(2);

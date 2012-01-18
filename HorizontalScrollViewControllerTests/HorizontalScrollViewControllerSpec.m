@@ -17,6 +17,8 @@ describe(@"dequeScrollPageToBeVisibleWithIndex", ^{
         controller = [[HorizontalScrollViewController alloc] init];
         NSMutableSet* visiblePages = [[NSMutableSet alloc] init];
         [controller setValue:visiblePages forKey:@"visiblePages"];
+        [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+        [controller setContentPageNibName:@"SamplePage"];
         [visiblePages release];
     });
     
@@ -79,6 +81,9 @@ describe(@"recycleNoLongerUsedPagesWithfirstNeededPage", ^{
         controller = [[HorizontalScrollViewController alloc] init];
         NSMutableSet* visiblePages = [[NSMutableSet alloc] init];
         [controller setValue:visiblePages forKey:@"visiblePages"];
+        [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+        [controller setContentPageNibName:@"SamplePage"];
+
         [visiblePages release];
     });
     
@@ -129,6 +134,9 @@ describe(@"addLoadingPageToVisiblePagesAtIndex", ^{
         [loadingPageMock stub:@selector(view) andReturn:loadingViewMock];
         [controller setValue:loadingPageMock forKey:@"loadingController"];
         [controller setValue:pagingScrollViewMock forKey:@"pagingScrollView"];
+        [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+        [controller setContentPageNibName:@"SamplePage"];
+
     });
     
     afterEach(^{
@@ -173,7 +181,11 @@ describe(@"pageControllerClass property", ^{
     it(@"should have a property called pageControllerClass", ^{
         HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
         controller.pageControllerClass = [PageController class];
+        [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+        [controller setContentPageNibName:@"SamplePage"];
+
         STAssertTrue(controller.pageControllerClass == [PageController class], @"");
+        
     });
 });
 
@@ -181,6 +193,9 @@ describe(@"loadingPageControllerName", ^{
     
     it(@"should return a default name if the property loadingPageControllerClass has not been set", ^{
         HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
+        [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+        [controller setContentPageNibName:@"SamplePage"];
+
         controller.loadingPageControllerClass = NULL;
         
         STAssertTrue([controller safeLoadingPageControllerClass] == [LoadingScreenViewController class], @"");
@@ -188,6 +203,9 @@ describe(@"loadingPageControllerName", ^{
 
     it(@"should return the value of the property loadingPageControllerClass if it's been set", ^{
         HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
+        [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+        [controller setContentPageNibName:@"SamplePage"];
+
         controller.loadingPageControllerClass = [PageController class];
         
         STAssertTrue([controller safeLoadingPageControllerClass] == [PageController class], @"");;
@@ -199,6 +217,9 @@ describe(@"loadView", ^{
     
     it(@"should send the message 'safeLoadingPageControllerClass'", ^{
         HorizontalScrollViewController* controller = [[HorizontalScrollViewController alloc] init];
+        [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+        [controller setContentPageNibName:@"SamplePage"];
+
         [[controller should] receive:@selector(safeLoadingPageControllerClass)];
         [controller loadView];
     });
@@ -211,6 +232,9 @@ describe(@"makeMissingPagesVisibleWithfirstNeededPage", ^{
     
     beforeEach(^{
         controller = [[HorizontalScrollViewController alloc] init];
+        [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+        [controller setContentPageNibName:@"SamplePage"];
+
     });
     
     afterEach(^{
@@ -273,6 +297,74 @@ describe(@"makeMissingPagesVisibleWithfirstNeededPage", ^{
     
 });
 
+describe(@"configurePage:forIndex", ^{
+
+    __block HorizontalScrollViewController* controller;
+    __block UIScrollView* pagingScrollViewMock;
+    
+    beforeEach(^{
+        controller = [[HorizontalScrollViewController alloc] init];
+        [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+        [controller setContentPageNibName:@"SamplePage"];
+        
+        pagingScrollViewMock = [KWMock nullMockForClass:[UIScrollView class]];        
+        OrderedListDataSource* dataSourceMock = [KWMock mockForClass:[OrderedListDataSource class]];
+        [dataSourceMock stub:@selector(count) andReturn:theValue(4)];
+        
+        [controller setValue:pagingScrollViewMock forKey:@"pagingScrollView"];
+        [controller setDataSource:dataSourceMock];
+        
+    });
+    
+    afterEach(^{
+        [controller release];
+    });
+
+    it(@"should call displayViewWithElement: if the index is within the interval. First valid index", ^{
+        
+        id elementMock = [KWMock nullMock];
+        PageController* pageMock = [KWMock nullMockForClass:[PageController class]];
+        [pageMock stub:@selector(index) andReturn:theValue(1)];
+        [controller.dataSource stub:@selector(elementAtIndex:) andReturn:elementMock withArguments:theValue(0)];
+        [[pageMock should] receive:@selector(displayViewWithElement:) withArguments:elementMock];
+        [controller configurePage:pageMock forIndex:1];
+    });
+    
+    it(@"should call displayViewWithElement: if the index is within the interval. last valid index", ^{
+        id elementMock = [KWMock nullMock];
+        PageController* pageMock = [KWMock nullMockForClass:[PageController class]];
+        [pageMock stub:@selector(index) andReturn:theValue(4)];
+        [controller.dataSource stub:@selector(elementAtIndex:) andReturn:elementMock withArguments:theValue(3)];
+        [[pageMock should] receive:@selector(displayViewWithElement:) withArguments:elementMock];
+        [controller configurePage:pageMock forIndex:4];
+    });
+    
+    it(@"should call displayViewWithElement: if the index is within the interval. number in the middle index", ^{
+        id elementMock = [KWMock nullMock];
+        PageController* pageMock = [KWMock nullMockForClass:[PageController class]];
+        [pageMock stub:@selector(index) andReturn:theValue(2)];
+        [controller.dataSource stub:@selector(elementAtIndex:) andReturn:elementMock withArguments:theValue(1)];
+        [[pageMock should] receive:@selector(displayViewWithElement:) withArguments:elementMock];
+        [controller configurePage:pageMock forIndex:2];
+    });
+
+    
+    it(@"should not call displayViewWithElement: if the index is not within the interval. under the limit", ^{
+        id elementMock = [KWMock nullMock];
+        PageController* pageMock = [KWMock nullMockForClass:[PageController class]];
+        [[pageMock shouldNot] receive:@selector(displayViewWithElement:)];
+        [controller configurePage:pageMock forIndex:0];
+    });
+
+    it(@"should not call displayViewWithElement: if the index is not within the interval. over the limit", ^{
+        id elementMock = [KWMock nullMock];
+        PageController* pageMock = [KWMock nullMockForClass:[PageController class]];
+        [[pageMock shouldNot] receive:@selector(displayViewWithElement:)];
+        [controller configurePage:pageMock forIndex:5];
+    });
+    
+});
+
 describe(@"ScrollViewDidEndDecelerating:", ^{
 
     __block HorizontalScrollViewController* controller;
@@ -280,13 +372,18 @@ describe(@"ScrollViewDidEndDecelerating:", ^{
     
     beforeEach(^{
         controller = [[HorizontalScrollViewController alloc] init];
+        [controller setLoadingPageNibName:@"LoadingScreenViewController"];
+        [controller setContentPageNibName:@"SamplePage"];
+        
         pagingScrollViewMock = [KWMock nullMockForClass:[UIScrollView class]];        
+        CGRect scrollViewBrounds = CGRectMake(0, 0, 320, 480);
+        [pagingScrollViewMock stub:@selector(bounds) andReturn:theValue(scrollViewBrounds)];
+
         OrderedListDataSource* dataSourceMock = [KWMock mockForClass:[OrderedListDataSource class]];
         [dataSourceMock stub:@selector(count) andReturn:theValue(4)];
-
+        
         [controller setValue:pagingScrollViewMock forKey:@"pagingScrollView"];
-        [controller setDataSource:dataSourceMock];
-
+        [controller setDataSource:dataSourceMock];        
     });
     
     afterEach(^{
@@ -295,39 +392,60 @@ describe(@"ScrollViewDidEndDecelerating:", ^{
 
     
     it(@"should add the loading page to the hierarchy if current index is 0", ^{        
-        CGPoint scrollViewOffset = CGPointMake(300.0, 0.0);
+        OrderedListDataSource* dataSourceMock = [KWMock nullMockForClass:[OrderedListDataSource class]];// null so it doesn't get an unexpected message for fetching                
+        [dataSourceMock stub:@selector(count) andReturn:theValue(4)]; // but we still need a count to the comparason gets in the right clause
+        [controller setDataSource:dataSourceMock];        
+
+        CGPoint scrollViewOffset = CGPointMake(0.0, 0.0);
         [pagingScrollViewMock stub:@selector(contentOffset) andReturn:theValue(scrollViewOffset)];
         [[controller should] receive:@selector(addLoadingPageToVisiblePagesAtIndex:) withArguments:theValue(0)];
-        [[controller shouldNot] receive:@selector(removeLoadingPageFromView)];
         [controller scrollViewDidEndDecelerating:pagingScrollViewMock];
     });
 
-    it(@"should add the loading page to the hierarchy if current index is N+1", ^{
-        CGPoint scrollViewOffset = CGPointMake(1900.0, 0.0);
+    it(@"should fetch more elements before from the datasource if index is 0", ^{        
+        CGPoint scrollViewOffset = CGPointMake(300.0, 0.0);
+        [pagingScrollViewMock stub:@selector(contentOffset) andReturn:theValue(scrollViewOffset)];
+        [[controller.dataSource should] receive:@selector(fetchElementsBatch:beforeAndIncluding:)];
+        [[controller.dataSource shouldNot] receive:@selector(fetchElementsBatch:afterAndIncluding:)];
+
+        [controller scrollViewDidEndDecelerating:pagingScrollViewMock];
+    });
+
+    
+    it(@"should add the loading page to the hierarchy if current index is N+1", ^{        
+        OrderedListDataSource* dataSourceMock = [KWMock nullMockForClass:[OrderedListDataSource class]]; // null so it doesn't get an unexpected message for fetching        
+        [dataSourceMock stub:@selector(count) andReturn:theValue(4)]; // but we still need a count to the comparason gets in the right clause
+        [controller setDataSource:dataSourceMock];        
+        CGPoint scrollViewOffset = CGPointMake(1700.0, 0.0);
         [pagingScrollViewMock stub:@selector(contentOffset) andReturn:theValue(scrollViewOffset)];
         [[controller should] receive:@selector(addLoadingPageToVisiblePagesAtIndex:) withArguments:theValue(5)];
-        [[controller shouldNot] receive:@selector(removeLoadingPageFromView)];
-        [controller scrollViewDidEndDecelerating:pagingScrollViewMock];
-    });
-    
-    it(@"should remove the loading page from the hierarchy if the index is 1", ^{
-        CGPoint scrollViewOffset = CGPointMake(340.0, 0.0);
-        [pagingScrollViewMock stub:@selector(contentOffset) andReturn:theValue(scrollViewOffset)];
-        [[controller should] receive:@selector(removeLoadingPageFromView)];
-        [[controller shouldNot] receive:@selector(addLoadingPageToVisiblePagesAtIndex:) withArguments:theValue(1)];
-        [controller scrollViewDidEndDecelerating:pagingScrollViewMock];
-
-    });
-    
-    it(@"should remove the loading page from the hierarchy if the index is N", ^{
-        CGPoint scrollViewOffset = CGPointMake(1580.0, 0.0);
-        [pagingScrollViewMock stub:@selector(contentOffset) andReturn:theValue(scrollViewOffset)];
-        [[controller should] receive:@selector(removeLoadingPageFromView)];
-        [[controller shouldNot] receive:@selector(addLoadingPageToVisiblePagesAtIndex:) withArguments:theValue(4)];
         [controller scrollViewDidEndDecelerating:pagingScrollViewMock];
     });
 
-    
+    it(@"should fetch more elements before from the datasource if index is N+1", ^{        
+        CGPoint scrollViewOffset = CGPointMake(1700, 0.0);
+        [pagingScrollViewMock stub:@selector(contentOffset) andReturn:theValue(scrollViewOffset)];
+        [[controller.dataSource should] receive:@selector(fetchElementsBatch:afterAndIncluding:)];
+        [[controller.dataSource shouldNot] receive:@selector(fetchElementsBatch:beforeAndIncluding:)];
+
+        [controller scrollViewDidEndDecelerating:pagingScrollViewMock];
+    });
+
+    it(@"should not add the loading page to the hierarchy if current index is > 0", ^{        
+        
+        CGPoint scrollViewOffset = CGPointMake(500, 0.0);
+        [pagingScrollViewMock stub:@selector(contentOffset) andReturn:theValue(scrollViewOffset)];
+        [[controller shouldNot] receive:@selector(addLoadingPageToVisiblePagesAtIndex:)];
+        [controller scrollViewDidEndDecelerating:pagingScrollViewMock];
+    });
+
+    it(@"should not add the loading page to the hierarchy if current index is < N+1", ^{        
+        
+        CGPoint scrollViewOffset = CGPointMake(1000, 0.0);
+        [pagingScrollViewMock stub:@selector(contentOffset) andReturn:theValue(scrollViewOffset)];
+        [[controller shouldNot] receive:@selector(addLoadingPageToVisiblePagesAtIndex:)];
+        [controller scrollViewDidEndDecelerating:pagingScrollViewMock];
+    });
     
 });
 
