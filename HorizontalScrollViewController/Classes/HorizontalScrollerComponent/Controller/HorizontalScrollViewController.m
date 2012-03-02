@@ -481,7 +481,7 @@
     /* We calculate the frame of the paginScrollView. A page's frame is related to the scrollView  */
     /* that contains it.                                                                           */
 	/* The page width is determined by the bounds width of the scroll view. Because of this, the   */
-    /* only way we can implement the padding is by making the scrollingView bigger (it's frame).    */
+    /* only way we can implement the padding is by making the scrollingView bigger (it's frame).   */
 	/***********************************************************************************************/								
     CGRect frame = [[UIScreen mainScreen] bounds];
     frame.origin.x -= PADDING;
