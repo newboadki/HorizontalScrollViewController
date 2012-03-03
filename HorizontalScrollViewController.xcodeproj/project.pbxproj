@@ -731,6 +731,7 @@
 		E620596813CF690C00656735 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Unboxed Consulting";
 			};
 			buildConfigurationList = E620596B13CF690C00656735 /* Build configuration list for PBXProject "HorizontalScrollViewController" */;
@@ -977,6 +978,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HorizontalScrollViewController/HorizontalScrollViewController-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "HorizontalScrollViewController/HorizontalScrollViewController-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -991,6 +993,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HorizontalScrollViewController/HorizontalScrollViewController-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "HorizontalScrollViewController/HorizontalScrollViewController-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
@@ -1009,6 +1012,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HorizontalScrollViewControllerTests/HorizontalScrollViewControllerTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/HorizontalScrollViewControllerTests/OCMock\"";
 				INFOPLIST_FILE = "HorizontalScrollViewControllerTests/HorizontalScrollViewControllerTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -1039,6 +1043,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HorizontalScrollViewControllerTests/HorizontalScrollViewControllerTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/HorizontalScrollViewControllerTests/OCMock\"";
 				INFOPLIST_FILE = "HorizontalScrollViewControllerTests/HorizontalScrollViewControllerTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
