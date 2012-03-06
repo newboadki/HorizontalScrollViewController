@@ -356,6 +356,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0000735E150236300046381E /* Problem Specific Example */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Problem Specific Example";
+			sourceTree = "<group>";
+		};
 		E620596613CF690C00656735 = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +395,7 @@
 		E620597B13CF690C00656735 /* HorizontalScrollViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0000735E150236300046381E /* Problem Specific Example */,
 				E67CB1921469472A0022FDCF /* HorizontalScrollerComponent */,
 				E67CB1BA146947970022FDCF /* NumbersDataSource.h */,
 				E67CB1BB146947970022FDCF /* NumbersDataSource.m */,
@@ -973,6 +981,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Borja Arias (K2NMFRWB9T)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -981,6 +990,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "HorizontalScrollViewController/HorizontalScrollViewController-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "794DC21E-15E0-4BF8-A970-C31251C5AADE";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

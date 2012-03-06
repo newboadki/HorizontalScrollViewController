@@ -3,7 +3,7 @@
 //  HorizontalScrollViewController
 //
 //  Created by Borja Arias on 08/11/2011.
-//  Copyright (c) 2011 Unboxed Consulting. All rights reserved.
+//  Copyright (c) 2011 Borja Arias Drake. All rights reserved.
 //
 
 #import "TextnumbersDataSource.h"

@@ -3,13 +3,10 @@
 //  HorizontalScrollViewController
 //
 //  Created by Borja Arias Drake on 14/07/2011.
-//  Copyright 2011 Unboxed Consulting. All rights reserved.
+//  Copyright 2011 Borja Arias Drake. All rights reserved.
 //
 
 #import "HorizontalScrollViewControllerAppDelegate.h"
-#import "HorizontalScrollViewController.h"
-#import "TextnumbersDataSource.h"
-#import "PurplePageController.h"
 
 @implementation HorizontalScrollViewControllerAppDelegate
 
@@ -17,15 +14,20 @@
 @synthesize window=_window;
 
 @synthesize viewController=_viewController;
+@synthesize dataSource;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+
+    // Create a data source
+    TextnumbersDataSource* ds = [[TextnumbersDataSource alloc] initWithDelegate:self.viewController];
+    self.dataSource = ds;
+    [ds release];
     
-    TextnumbersDataSource* dataSource = [[TextnumbersDataSource alloc] initWithDelegate:self.viewController];
-    self.viewController.dataSource = dataSource;
-    self.viewController.pageControllerClass = [PurplePageController class];
-    self.viewController.loadingPageNibName = @"LoadingScreenViewController";
+    // Configure the HorizontalScrollViewController
+    self.viewController.dataSource = dataSource;                                // Model
+    self.viewController.pageControllerClass = [PurplePageController class];     
+    self.viewController.loadingPageNibName = @"LoadingScreenViewController";    // Custimze the look
     self.viewController.contentPageNibName = @"SamplePage";
     [dataSource release];        
     
@@ -77,6 +79,7 @@
 {
     [_window release];
     [_viewController release];
+    [dataSource release];
     [super dealloc];
 }
 
